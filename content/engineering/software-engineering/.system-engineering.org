@@ -1,0 +1,118 @@
+#+STARTUP: overview
+#+OPTIONS: \n:t
+
+#+HUGO_BASE_DIR: ~/shdennlin-wiki/wiki.shdennlin.com
+#+HUGO_SECTION: /engineering/software-engineering/
+#+EXPORT_FILE_NAME:	system-engineering
+
+#+TITLE:	System Engineering
+#+AUTHOR:	Shawn Dennis Lin
+#+EMAIL:	ShawnDennisLin@gmail.com
+#+DATE:	[2021-09-09 Thu]
+
+* Content :TOC_2_gh:noexport:
+- [[#linux][Linux]]
+  - [[#command][Command]]
+  - [[#system][System]]
+  - [[#action][Action]]
+  - [[#problem][Problem]]
+- [[#internet][Internet]]
+  - [[#ipv4-vs-ipv6][IPv4 vs. IPv6]]
+  - [[#dhcp-dhcp][DHCP DHCP]]
+  - [[#http-header-fields][HTTP header fields]]
+
+* Linux
+- [[http://linux-wiki.cn/wiki/zh-tw/Linux%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84][Linux目錄結構]]
+- [[https://kknews.cc/zh-tw/code/ggepgbe.html][為什麼伺服器要選擇 Linux]]
+** Command
+| man                   | command                                             | describe                                                       | Ref                               |
+|-----------------------+-----------------------------------------------------+----------------------------------------------------------------+-----------------------------------|
+| User                  |                                                     |                                                                |                                   |
+| =adduser=, =addgroup= |                                                     | add a user or group to the system                              |                                   |
+|                       | --disabled-password                                 |                                                                |                                   |
+| =chown=               | ~chown -R <user>:<group> <folder_1> ... <folder_n>~ | Chown User and Group Recursively                               | [[https://devconnected.com/how-to-chown-recursive-on-linux/][How To Chown Recursively on Linux]] |
+| =passwd=              |                                                     |                                                                |                                   |
+| =groups=              |                                                     | print the groups a user is in                                  |                                   |
+|                       | ~sudo usermod -a -G <GROUP> <yourusername>~         | Add your user to <GROUP> group                                 |                                   |
+|                       | ~gpasswd -d <user> <group>~                         | remote <group> from <user>                                     |                                   |
+| =userdel=             | ~userdel [options] LOGIN~                           | delete a user account and related files (need to use =sudo -=) | [[https://tw.godaddy.com/help/linux-19158][移除 Linux 使用者]]                 |
+|                       | ~userdel -r <user>~                                 |                                                                |                                   |
+|-----------------------+-----------------------------------------------------+----------------------------------------------------------------+-----------------------------------|
+| System                |                                                     |                                                                |                                   |
+| =lsof=                |                                                     | list open files                                                |                                   |
+|                       | ~sudo lsof -i -P -n \ grep LISTEN~                  | check if port is in use in                                     |                                   |
+|                       | ~sudo netstat -tupln \ grep LISTEN~                 |                                                                |                                   |
+| =df=                  |                                                     | report file system disk space usage                            |                                   |
+|                       | ~df -h~                                             | print sizes in powers of 1024 (e.g., 1023M)                    |                                   |
+|                       | ~sodu df -sh [path]~                                | Get the Size of a Directory                                    |                                   |
+| =mount=               |                                                     | mount a filesystem                                             |                                   |
+| =umount=              |                                                     | unmount file systems                                           |                                   |
+| =fdisk=               | ~fdisk [options] device~                            | manipulate disk partition table                                |                                   |
+|                       | ~fdisk -l [device...]~                              | list disk                                                      |                                   |
+| =mkfs=                |                                                     | build a Linux filesystem                                       |                                   |
+| =e2label=             | ~e2label device [ volume-label ]~                   | Change the label on an ext2/ext3/ext4 filesystem               |                                   |
+| =lsblk=               |                                                     | list block devices                                             |                                   |
+|                       |                                                     |                                                                |                                   |
+|-----------------------+-----------------------------------------------------+----------------------------------------------------------------+-----------------------------------|
+| file                  |                                                     |                                                                |                                   |
+| =tail=                |                                                     | output the last part of files                                  |                                   |
+| =dd=                  |                                                     | convert and copy a file                                        |                                   |
+| =find=                |                                                     | search for files in a directory hierarchy                      | [[https://blog.miniasp.com/post/2010/08/27/Linux-find-command-tips-and-notice][linux-find(TW)]]                    |
+|                       | ~sudo find / -iname 'filename' -type f~             |                                                                |                                   |
+|                       | ~sudo find / -iname 'dirname' -type d~              |                                                                |                                   |
+| =rsync=               | ~rsync [OPTION...] SRC... [DEST]~                   | a fast, versatile, remote (and local) file-copying tool        |                                   |
+|                       | ~rsync -avh --del SRC DEST --exclude='path'~        |                                                                |                                   |
+|-----------------------+-----------------------------------------------------+----------------------------------------------------------------+-----------------------------------|
+| =wget=                |                                                     | The non-interactive network downloader.                        |                                   |
+|                       | ~wget <uri> -P /path/to/folder~                     | path of file                                                   |                                   |
+|                       | ~wget <uri> -O /path/to/file.ext~                   | path of dictionary                                             |                                   |
+|                       |                                                     |                                                                |                                   |
+|-----------------------+-----------------------------------------------------+----------------------------------------------------------------+-----------------------------------|
+| server                |                                                     |                                                                |                                   |
+| =nslookup=            | ~nslookup [-option] [name \ -] [server]~            |                                                                | [[https://code.yidas.com/nslookup/][Nslookup]]                          |
+|                       | ~nslookup -type=any domain.com~                     |                                                                |                                   |
+|                       |                                                     |                                                                |                                   |
+
+** System
+*** Locales & Language pack
+#+begin_src sh
+sudo apt install -y locales locales-all
+
+sudo apt install -y locales
+sudo localedef -i zh_TW -f UTF-8 zh_TW.UTF-8
+sudo localedef -i en_US -f UTF-8 en_US.UTF-8
+sudo update-locale
+
+#+end_src
+
++ [[https://blog.csdn.net/weixin_33695082/article/details/92792632][Linux字符集和系统语言设置-LANG,locale,LC_ALL,POSIX等命令及参数详解]]
++ [[https://www.tecmint.com/set-system-locales-in-linux/][How to Change or Set System Locales in Linux]]
+** Action
+*** Format SD card
+- [[https://ragnyll.gitlab.io/2018/05/22/format-a-sd-card-to-fat-32linux.html][Format an sd card to fat32 in linux using fdisk]]
+*** Rename a volume
+- [[https://superuser.com/a/582998][Rename a volume]]
+
+*** Change login background
+1. find
+2. 
+
+# + Ref: [[https://askubuntu.com/questions/1064491/ubuntu-18-04-change-login-screen-theme-not-wallpaper][https://ubuntuhandbook.org/index.php/2020/05/login-screen-background-ubuntu-20-04/]]
++ https://vitux.com/how-to-change-login-lock-screen-background-in-ubuntu/
+
+** Problem
+*** -bash: sudo: command not found
+https://unix.stackexchange.com/a/425664
+
+*** Fix apt-get update “the following signatures couldn’t be verified because the public key is not available”
+- [[https://chrisjean.com/fix-apt-get-update-the-following-signatures-couldnt-be-verified-because-the-public-key-is-not-available/][Fix apt-get update “the following signatures couldn’t be verified because the public key is not available”]]
+*** crontab
+- [[https://blog.gtwang.org/linux/linux-crontab-cron-job-tutorial-and-examples/][Linux 設定 crontab 例行性工作排程教學與範例]]
+- [[https://askubuntu.com/questions/56683/where-is-the-cron-crontab-log][corntab log]] 
+* Internet
+** IPv4 vs. IPv6
+- [[https://www.ithome.com.tw/tech/92046][認識IPv4與IPv6的差異]]
+** DHCP [[https://zh.wikipedia.org/wiki/%E5%8A%A8%E6%80%81%E4%B8%BB%E6%9C%BA%E8%AE%BE%E7%BD%AE%E5%8D%8F%E8%AE%AE][DHCP]]
+
+** HTTP header fields
+- [[https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5][HTTP header fields]]
