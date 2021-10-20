@@ -198,36 +198,45 @@ Ans: [[https://dev.to/vumdao/how-to-drop-a-postgres-role-user-with-privileges-2h
 - [[https://andy6804tw.github.io/2019/01/29/ubuntu-mysql-setting/][[Linux系統] ubuntu安装MySQL]]
 
 **** Command
-| command                      | describe          |
-|------------------------------+-------------------|
-| =USE DATABASES;=             |                   |
-| =SHOW DATABASES;=            | List of databases |
-| =SHOW SCHEMAS;=              | SHOW SCHEMAS      |
-| =SHOW TABLES [FROM db_name]= |                   |
-|                              |                   |
+***** Database
+| command                    | describe          |
+|----------------------------+-------------------|
+| ~SHOW DATABASES;~          | List of databases |
+| ~CREATE DATABASE db_name;~ | Create database   |
+| ~USE [DATABASES];~         | select database   |
+
+***** User
+| command                                                            | describe                                   |
+|--------------------------------------------------------------------+--------------------------------------------|
+| ~CREATE USER 'root'@'localhost' IDENTIFIED BY 'password';~         | Create User                                |
+| ~SELECT User, Host, Password FROM mysql.user;~                     | List of all user                           |
+| ~SHOW GRANTS FOR 'bloguser'@'localhost';~                          | List grants for a mysql user               |
+| ~REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'bloguser'@'localhost';~ | Revoke all grants for a mysql user         |
+| ~DROP USER 'bloguser'@'localhost';~                                | Remove/Delete the user from the user table |
+| ~ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';~          | Change Password                            |
+
+***** PRIVILEGES
+| command                                                        | describe                           |
+|----------------------------------------------------------------+------------------------------------|
+| ~SHOW GRANTS FOR 'root'@'localhost';~                          | Show GRANT                         |
+| ~GRANT ALL PRIVILEGES ON newdatabase.* TO 'user'@'localhost';~ | Give PRIVILEGES                    |
+| ~REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'user'@'localhost';~ | Revoke all grants for a mysql user |
+| ~flush privileges~                                             | Refresh privileges                 |
 
 **** Action
-***** build database
-#+begin_src sql
-CREATE DATABASE db_name;
-#+end_src
-***** build user
-#+begin_src sql
-CREATE USER 'root'@'localhost' IDENTIFIED BY '';
-#+end_src
+***** [[https://www.a2hosting.com/kb/developer-corner/mysql/reset-mysql-root-password][Reset the MySQL root password]]
+
 **** Install Mysql 5.7
 - [[https://computingforgeeks.com/how-to-install-mysql-on-ubuntu-focal/][How To Install MySQL 5.7 on Ubuntu 20.04]] (useful)
 - [[https://medium.com/@alef.duarte/cant-connect-to-local-mysql-server-through-socket-var-run-mysqld-mysqld-sock-155d580f3a06][Can’t connect to local MySQL server through socket ‘/var/run/mysqld/mysqld.sock’ (2) in Linux Subsystem for Windows 10]]
 
-**** Remove mysql
+**** Remove and Reinstall mysql
 #+begin_src shell
-sudo apt -y purge mysql*
-sudo apt -y autoremove
-sudo rm -rf /etc/mysql
-sudo rm -rf /var/lib/mysql*
-
-sudo shutdown -r now
+sudo apt purge mariadb-server mariadb-client
+sudo rm -rf /var/lib/mysql/
+sudo apt install mariadb-server mariadb-client
 #+end_src
+
 *** Redis
 Redis is an in-memory database that persists on disk. The data model is key-value, but many different kind of values are supported: Strings, Lists, Sets, Sorted Sets, Hashes, Streams, HyperLogLogs, Bitmaps.
 **** Install and Tutorial
