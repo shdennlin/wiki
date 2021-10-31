@@ -38,6 +38,7 @@ curl -I 127.0.0.1
 + Install tutorial: https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/
   
 **** Configuration
++ PHP-FPM: [[https://www.thegeekstuff.com/2013/12/nginx-php-fpm/][How to Configure Nginx to Execute PHP Using PHP-FPM]]
 + upstream: [[http://www.shixinke.com/nginx/nginx-upstream][nginx实现负载均衡upstream]]
 + map: [[http://www.ttlsa.com/nginx/using-nginx-map-method/][nginx map使用方法]]
 + sendfile: [[https://blog.51cto.com/laoxu/1417294][sendfile()对nginx性能的提升]] [[https://thoughts.t37.net/nginx-optimization-understanding-sendfile-tcp-nodelay-and-tcp-nopush-c55cdd276765][sendfile]]
@@ -88,6 +89,8 @@ nginx -t && service nginx reload
 
 *** Porblem
 - [[https://hostadvice.com/how-to/how-to-configure-nginx-and-apache-together-in-ubuntu/][How to Configure Nginx and Apache Together on the same Ubuntu VPS or Dedicated Server]]
+- [[https://lowendbox.com/blog/how-to-replace-apache-with-nginx-on-ubuntu-18-04/][Replace Apache with NGINX on Ubuntu 18.04]]
+ 
 ** App Server
 *** Passenger
 **** Introduction
@@ -193,9 +196,12 @@ Ans: [[https://dev.to/vumdao/how-to-drop-a-postgres-role-user-with-privileges-2h
    
   #+end_src
 
-*** MySQL
+*** MySQL ( MariaDB)
 **** Install and Tutorial
-- [[https://andy6804tw.github.io/2019/01/29/ubuntu-mysql-setting/][[Linux系統] ubuntu安装MySQL]]
+#+begin_src sh
+sudo apt install mariadb-server mariadb-client
+sudo mysql_secure_installation
+#+end_src
 
 **** Command
 ***** Database
@@ -232,9 +238,9 @@ Ans: [[https://dev.to/vumdao/how-to-drop-a-postgres-role-user-with-privileges-2h
 
 **** Remove and Reinstall mysql
 #+begin_src shell
-sudo apt purge mariadb-server mariadb-client
-sudo rm -rf /var/lib/mysql/
-sudo apt install mariadb-server mariadb-client
+sudo apt-get --purge remove "mysql*"
+sudo apt autoremove
+sudo mv /etc/mysql/ /tmp/mysql_configs/
 #+end_src
 
 *** Redis

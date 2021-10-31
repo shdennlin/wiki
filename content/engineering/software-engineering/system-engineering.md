@@ -9,6 +9,7 @@ draft = false
 
 -   [Linux目錄結構](http://linux-wiki.cn/wiki/zh-tw/Linux%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84)
 -   [為什麼伺服器要選擇 Linux](https://kknews.cc/zh-tw/code/ggepgbe.html)
+-   [使用 SysRq 鍵讓當機的 Linux 安全地重新開機](https://blog.gtwang.org/linux/safe-reboot-of-linux-using-magic-sysrq-key/)
 
 
 ### Command {#command}
@@ -48,6 +49,7 @@ draft = false
 |                       | `sudo find / -iname 'dirname' -type d`              |                                                                |                                                                                                |
 | `rsync`               | `rsync [OPTION...] SRC... [DEST]`                   | a fast, versatile, remote (and local) file-copying tool        |                                                                                                |
 |                       | `rsync -avh --del SRC DEST --exclude='path'`        |                                                                |                                                                                                |
+|                       | `rsync --info=progress2 source dest`                | copy with progress bar                                         |                                                                                                |
 | `wget`                |                                                     | The non-interactive network downloader.                        |                                                                                                |
 |                       | `wget <uri> -P /path/to/folder`                     | path of file                                                   |                                                                                                |
 |                       | `wget <uri> -O /path/to/file.ext`                   | path of dictionary                                             |                                                                                                |
@@ -117,6 +119,23 @@ sudo update-locale
 
 -   [Linux 設定 crontab 例行性工作排程教學與範例](https://blog.gtwang.org/linux/linux-crontab-cron-job-tutorial-and-examples/)
 -   [corntab log](https://askubuntu.com/questions/56683/where-is-the-cron-crontab-log)
+
+
+### WSL {#wsl}
+
+
+#### Problem {#problem}
+
+-   release disk space back to the host OS  
+    `In Posershell`  
+    
+    ```sh
+    wsl --shutdown
+    cd "<dir>" # example C:\Users\shawn\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu20.04onWindows_79rhkp1fndgsc\LocalState
+    optimize-vhd -Path .\ext4.vhdx -Mode full
+    ```
+    
+    Ref: <https://github.com/microsoft/WSL/issues/4699>
 
 
 ## Internet {#internet}

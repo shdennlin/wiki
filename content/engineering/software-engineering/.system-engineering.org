@@ -16,6 +16,7 @@
   - [[#system][System]]
   - [[#action][Action]]
   - [[#problem][Problem]]
+  - [[#wsl][WSL]]
 - [[#internet][Internet]]
   - [[#ipv4-vs-ipv6][IPv4 vs. IPv6]]
   - [[#dhcp-dhcp][DHCP DHCP]]
@@ -24,6 +25,7 @@
 * Linux
 - [[http://linux-wiki.cn/wiki/zh-tw/Linux%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84][Linux目錄結構]]
 - [[https://kknews.cc/zh-tw/code/ggepgbe.html][為什麼伺服器要選擇 Linux]]
+- [[https://blog.gtwang.org/linux/safe-reboot-of-linux-using-magic-sysrq-key/][使用 SysRq 鍵讓當機的 Linux 安全地重新開機]]
 ** Command
 | man                   | command                                             | describe                                                       | Ref                               |
 |-----------------------+-----------------------------------------------------+----------------------------------------------------------------+-----------------------------------|
@@ -62,6 +64,7 @@
 |                       | ~sudo find / -iname 'dirname' -type d~              |                                                                |                                   |
 | =rsync=               | ~rsync [OPTION...] SRC... [DEST]~                   | a fast, versatile, remote (and local) file-copying tool        |                                   |
 |                       | ~rsync -avh --del SRC DEST --exclude='path'~        |                                                                |                                   |
+|                       | ~rsync --info=progress2 source dest~                | copy with progress bar                                         |                                   |
 |-----------------------+-----------------------------------------------------+----------------------------------------------------------------+-----------------------------------|
 | =wget=                |                                                     | The non-interactive network downloader.                        |                                   |
 |                       | ~wget <uri> -P /path/to/folder~                     | path of file                                                   |                                   |
@@ -109,6 +112,17 @@ https://unix.stackexchange.com/a/425664
 *** crontab
 - [[https://blog.gtwang.org/linux/linux-crontab-cron-job-tutorial-and-examples/][Linux 設定 crontab 例行性工作排程教學與範例]]
 - [[https://askubuntu.com/questions/56683/where-is-the-cron-crontab-log][corntab log]] 
+** WSL
+*** Problem
+- release disk space back to the host OS
+  =In Posershell=
+  #+begin_src sh
+  wsl --shutdown
+  cd "<dir>" # example C:\Users\shawn\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu20.04onWindows_79rhkp1fndgsc\LocalState
+  optimize-vhd -Path .\ext4.vhdx -Mode full
+  #+end_src
+  Ref: https://github.com/microsoft/WSL/issues/4699
+
 * Internet
 ** IPv4 vs. IPv6
 - [[https://www.ithome.com.tw/tech/92046][認識IPv4與IPv6的差異]]

@@ -2,7 +2,7 @@
 title = "Web Developer"
 author = ["Shawn Dennis Lin"]
 date = 2021-09-08T00:00:00+08:00
-lastmod = 2021-09-08T21:51:02+08:00
+lastmod = 2021-11-01T01:41:32+08:00
 draft = false
 +++
 
@@ -48,6 +48,7 @@ Nginx (pronounced "engine X"), stylized as NGINX, nginx or NginX, is a web serve
 
 -  Configuration
 
+    -   PHP-FPM: [How to Configure Nginx to Execute PHP Using PHP-FPM](https://www.thegeekstuff.com/2013/12/nginx-php-fpm/)
     -   upstream: [nginx实现负载均衡upstream](http://www.shixinke.com/nginx/nginx-upstream)
     -   map: [nginx map使用方法](http://www.ttlsa.com/nginx/using-nginx-map-method/)
     -   sendfile: [sendfile()对nginx性能的提升](https://blog.51cto.com/laoxu/1417294) [sendfile](https://thoughts.t37.net/nginx-optimization-understanding-sendfile-tcp-nodelay-and-tcp-nopush-c55cdd276765)
@@ -129,6 +130,7 @@ Nginx (pronounced "engine X"), stylized as NGINX, nginx or NginX, is a web serve
 #### Porblem {#porblem}
 
 -   [How to Configure Nginx and Apache Together on the same Ubuntu VPS or Dedicated Server](https://hostadvice.com/how-to/how-to-configure-nginx-and-apache-together-in-ubuntu/)
+-   [Replace Apache with NGINX on Ubuntu 18.04](https://lowendbox.com/blog/how-to-replace-apache-with-nginx-on-ubuntu-18-04/)
 
 
 ### App Server {#app-server}
@@ -308,25 +310,54 @@ Nginx (pronounced "engine X"), stylized as NGINX, nginx or NginX, is a web serve
         ```
 
 
-#### MySQL {#mysql}
+#### MySQL ( MariaDB) {#mysql--mariadb}
 
 <!--list-separator-->
 
 -  Install and Tutorial
 
-    -   [[Linux系統] ubuntu安装MySQL](https://andy6804tw.github.io/2019/01/29/ubuntu-mysql-setting/)
+    ```sh
+    sudo apt install mariadb-server mariadb-client
+    sudo mysql_secure_installation
+    ```
 
 <!--list-separator-->
 
 -  Command
 
-    | command                      | describe          |
-    |------------------------------|-------------------|
-    | `USE DATABASES;`             |                   |
-    | `SHOW DATABASES;`            | List of databases |
-    | `SHOW SCHEMAS;`              | SHOW SCHEMAS      |
-    | `SHOW TABLES [FROM db_name]` |                   |
-    |                              |                   |
+    <!--list-separator-->
+    
+    -  Database
+    
+        | command                    | describe          |
+        |----------------------------|-------------------|
+        | `SHOW DATABASES;`          | List of databases |
+        | `CREATE DATABASE db_name;` | Create database   |
+        | `USE [DATABASES];`         | select database   |
+    
+    <!--list-separator-->
+    
+    -  User
+    
+        | command                                                            | describe                                   |
+        |--------------------------------------------------------------------|--------------------------------------------|
+        | `CREATE USER 'root'@'localhost' IDENTIFIED BY 'password';`         | Create User                                |
+        | `SELECT User, Host, Password FROM mysql.user;`                     | List of all user                           |
+        | `SHOW GRANTS FOR 'bloguser'@'localhost';`                          | List grants for a mysql user               |
+        | `REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'bloguser'@'localhost';` | Revoke all grants for a mysql user         |
+        | `DROP USER 'bloguser'@'localhost';`                                | Remove/Delete the user from the user table |
+        | `ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';`          | Change Password                            |
+    
+    <!--list-separator-->
+    
+    -  PRIVILEGES
+    
+        | command                                                        | describe                           |
+        |----------------------------------------------------------------|------------------------------------|
+        | `SHOW GRANTS FOR 'root'@'localhost';`                          | Show GRANT                         |
+        | `GRANT ALL PRIVILEGES ON newdatabase.* TO 'user'@'localhost';` | Give PRIVILEGES                    |
+        | `REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'user'@'localhost';` | Revoke all grants for a mysql user |
+        | `flush privileges`                                             | Refresh privileges                 |
 
 <!--list-separator-->
 
@@ -334,19 +365,7 @@ Nginx (pronounced "engine X"), stylized as NGINX, nginx or NginX, is a web serve
 
     <!--list-separator-->
     
-    -  build database
-    
-        ```sql
-        CREATE DATABASE db_name;
-        ```
-    
-    <!--list-separator-->
-    
-    -  build user
-    
-        ```sql
-        CREATE USER 'root'@'localhost' IDENTIFIED BY '';
-        ```
+    -  [Reset the MySQL root password](https://www.a2hosting.com/kb/developer-corner/mysql/reset-mysql-root-password)
 
 <!--list-separator-->
 
@@ -357,15 +376,12 @@ Nginx (pronounced "engine X"), stylized as NGINX, nginx or NginX, is a web serve
 
 <!--list-separator-->
 
--  Remove mysql
+-  Remove and Reinstall mysql
 
     ```shell
-    sudo apt -y purge mysql*
-    sudo apt -y autoremove
-    sudo rm -rf /etc/mysql
-    sudo rm -rf /var/lib/mysql*
-    
-    sudo shutdown -r now
+    sudo apt-get --purge remove "mysql*"
+    sudo apt autoremove
+    sudo mv /etc/mysql/ /tmp/mysql_configs/
     ```
 
 
