@@ -126,7 +126,10 @@ sudo update-locale
 
 #### Problem {#problem}
 
--   release disk space back to the host OS  
+<!--list-separator-->
+
+-  release disk space back to the host OS
+
     `In Posershell`  
     
     ```sh
@@ -135,20 +138,35 @@ sudo update-locale
     optimize-vhd -Path .\ext4.vhdx -Mode full
     ```
     
-    Ref: <https://github.com/microsoft/WSL/issues/4699>
+    Ref: <https://github.com/microsoft/WSL/issues/4699>  
+
+<!--list-separator-->
+
+-  Access a localhost running in Windows from inside WSL2
+
+    Get IP address in cmd: `ipconfig /all`  
+    windows host: `C:\Windows\System32\drivers\etc\hosts`  
+    Ref: [Access a localhost running in Windows from inside WSL2?](https://stackoverflow.com/a/66504604)  
+
+<!--list-separator-->
+
+-  localhostForwarding
+
+    create a file called `.wslconfig` in `C:\Users<your_username>.wslconfig`  
+    
+    ```sh
+    [wsl2]
+    localhostForwarding=true
+    ```
+    
+    Ref: [Access a localhost running in Windows from inside WSL2?](https://stackoverflow.com/a/65910122)  
 
 
-## Internet {#internet}
+## Windows {#windows}
 
 
-### IPv4 vs. IPv6 {#ipv4-vs-dot-ipv6}
+### Command {#command}
 
--   [認識IPv4與IPv6的差異](https://www.ithome.com.tw/tech/92046)
-
-
-### DHCP [DHCP](https://zh.wikipedia.org/wiki/%E5%8A%A8%E6%80%81%E4%B8%BB%E6%9C%BA%E8%AE%BE%E7%BD%AE%E5%8D%8F%E8%AE%AE) {#dhcp-dhcp}
-
-
-### HTTP header fields {#http-header-fields}
-
--   [HTTP header fields](https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5)
+| man     | command                                              | describe          | Ref |
+|---------|------------------------------------------------------|-------------------|-----|
+| `netsh` | `netsh int ipv4 show excludedportrange protocol=tcp` | show wdinows port |     |

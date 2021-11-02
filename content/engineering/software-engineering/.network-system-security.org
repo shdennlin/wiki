@@ -259,3 +259,11 @@ use git and Jenkins
 
 ** WebSocket
 + [[https://zh.wikipedia.org/wiki/WebSocket][WebSocket-wiki]]
+
+* Internet
+** IPv4 vs. IPv6
+- [[https://www.ithome.com.tw/tech/92046][認識IPv4與IPv6的差異]]
+** DHCP [[https://zh.wikipedia.org/wiki/%E5%8A%A8%E6%80%81%E4%B8%BB%E6%9C%BA%E8%AE%BE%E7%BD%AE%E5%8D%8F%E8%AE%AE][DHCP]]
+
+** HTTP header fields
+- [[https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5][HTTP header fields]]

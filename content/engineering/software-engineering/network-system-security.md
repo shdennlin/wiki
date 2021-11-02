@@ -307,3 +307,19 @@ Ref:
 ### WebSocket {#websocket}
 
 -   [WebSocket-wiki](https://zh.wikipedia.org/wiki/WebSocket)
+
+
+## Interne {#interne}
+
+
+### IPv4 vs. IPv6 {#ipv4-vs-dot-ipv6}
+
+-   [認識IPv4與IPv6的差異](https://www.ithome.com.tw/tech/92046)
+
+
+### DHCP [DHCP](https://zh.wikipedia.org/wiki/%E5%8A%A8%E6%80%81%E4%B8%BB%E6%9C%BA%E8%AE%BE%E7%BD%AE%E5%8D%8F%E8%AE%AE) {#dhcp-dhcp}
+
+
+### HTTP header fields {#http-header-fields}
+
+-   [HTTP header fields](https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5)

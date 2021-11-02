@@ -17,10 +17,8 @@
   - [[#action][Action]]
   - [[#problem][Problem]]
   - [[#wsl][WSL]]
-- [[#internet][Internet]]
-  - [[#ipv4-vs-ipv6][IPv4 vs. IPv6]]
-  - [[#dhcp-dhcp][DHCP DHCP]]
-  - [[#http-header-fields][HTTP header fields]]
+- [[#windows][Windows]]
+  - [[#command-1][Command]]
 
 * Linux
 - [[http://linux-wiki.cn/wiki/zh-tw/Linux%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84][Linux目錄結構]]
@@ -112,21 +110,32 @@ https://unix.stackexchange.com/a/425664
 *** crontab
 - [[https://blog.gtwang.org/linux/linux-crontab-cron-job-tutorial-and-examples/][Linux 設定 crontab 例行性工作排程教學與範例]]
 - [[https://askubuntu.com/questions/56683/where-is-the-cron-crontab-log][corntab log]] 
+
 ** WSL
 *** Problem
-- release disk space back to the host OS
+**** release disk space back to the host OS
   =In Posershell=
   #+begin_src sh
   wsl --shutdown
   cd "<dir>" # example C:\Users\shawn\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu20.04onWindows_79rhkp1fndgsc\LocalState
   optimize-vhd -Path .\ext4.vhdx -Mode full
   #+end_src
-  Ref: https://github.com/microsoft/WSL/issues/4699
+Ref: https://github.com/microsoft/WSL/issues/4699
 
-* Internet
-** IPv4 vs. IPv6
-- [[https://www.ithome.com.tw/tech/92046][認識IPv4與IPv6的差異]]
-** DHCP [[https://zh.wikipedia.org/wiki/%E5%8A%A8%E6%80%81%E4%B8%BB%E6%9C%BA%E8%AE%BE%E7%BD%AE%E5%8D%8F%E8%AE%AE][DHCP]]
+**** Access a localhost running in Windows from inside WSL2
+Get IP address in cmd: ~ipconfig /all~
+windows host: =C:\Windows\System32\drivers\etc\hosts=
+Ref: [[https://stackoverflow.com/a/66504604][Access a localhost running in Windows from inside WSL2?]]
 
-** HTTP header fields
-- [[https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5][HTTP header fields]]
+**** localhostForwarding
+create a file called =.wslconfig= in =C:\Users<your_username>.wslconfig=
+#+begin_src sh
+[wsl2]
+localhostForwarding=true
+#+end_src
+Ref: [[https://stackoverflow.com/a/65910122][Access a localhost running in Windows from inside WSL2?]]
+
+* Windows
+** Command
+| man     | command                                              | describe          | Ref |
+| =netsh= | ~netsh int ipv4 show excludedportrange protocol=tcp~ | show wdinows port |     |
