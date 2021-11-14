@@ -1,7 +1,7 @@
 +++
 title = "System Engineering"
 author = ["Shawn Dennis Lin"]
-date = 2021-09-09T00:00:00+08:00
+date = 2021-09-09T00:00:00-04:00
 draft = false
 +++
 
@@ -160,6 +160,135 @@ sudo update-locale
     ```
     
     Ref: [Access a localhost running in Windows from inside WSL2?](https://stackoverflow.com/a/65910122)  
+
+
+### Kali Linux {#kali-linux}
+
+
+#### OS information {#os-information}
+
+`neofetch`  
+
+```nil
+..............                                     shdennlin@shdennlinLnb 
+            ..,;:ccc,.                             ---------------------- 
+          ......''';lxO.                           OS: Kali GNU/Linux Rolling x86_64 
+.....''''..........,:ld;                           Host: 81LK IdeaPad L340-15IRH Gaming 
+           .';;;:::;,,.x,                          Kernel: 5.14.0-kali2-amd64 
+      ..'''.            0Xxoc:,.  ...              Uptime: 36 mins 
+  ....                ,ONkc;,;cokOdc',.            Packages: 3316 (dpkg), 4 (snap) 
+ .                   OMo           ':ddo.          Shell: zsh 5.8 
+                    dMc               :OO;         Resolution: 1920x1080, 1920x1080 
+                    0M.                 .:o.       DE: Plasma 5.23.2 
+                    ;Wd                            WM: KWin 
+                     ;XO,                          Theme: Kali-Dark [Plasma], Breeze [GTK2/3] 
+                       ,d0Odlc;,..                 Icons: Flat-Remix-Blue-Dark [Plasma], Flat-Remix-Blue-Dark [GTK2/3] 
+                           ..',;:cdOOd::,.         Terminal: konsole 
+                                    .:d;.':;.      CPU: Intel i5-9300H (8) @ 4.100GHz 
+                                       'd,  .'     GPU: Intel CoffeeLake-H GT2 [UHD Graphics 630] 
+                                         ;l   ..   GPU: NVIDIA GeForce GTX 1050 3 GB Max-Q 
+                                          .o       Memory: 4166MiB / 15886MiB 
+                                            c
+                                            .'                             
+                                             .                             
+```
+
+
+#### Install Nvidia driver {#install-nvidia-driver}
+
+**Install**  
+
+```sh
+sudo apt update && sudo apt -y upgrade
+sudo apt install -y nvidia-driver nvidia-cuda-toolkit
+```
+
+**Check**  
+
+1.  lspci|grep VGA
+2.  nvidia-smi
+3.  xrandr
+4.  lspci -v
+
+Ref: <https://www.kali.org/docs/general-use/install-nvidia-drivers-on-kali-linux/>  
+
+
+#### Display Configuration {#display-configuration}
+
+1.  `$ sudo vi /etc/X11/xorg.conf` and add  
+    
+    ```conf
+    Section "ServerLayout"
+    Identifier "layout"
+    Screen 0 "nvidia"
+    Inactive "intel"
+    EndSection
+    
+    Section "Device"
+    Identifier "nvidia"
+    Driver "nvidia"
+    BusID  "PCI:1:0:0"
+    EndSection
+    
+    Section "Screen"
+    Identifier "nvidia"
+    Device "nvidia"
+    EndSection
+    
+    Section "Device"
+    Identifier "intel"
+    Driver "modesetting"
+    Option "AccelMethod"  "uxa"
+    EndSection
+    
+    Section "Screen"
+    Identifier "intel"
+    Device "intel"
+    EndSection
+    ```
+    
+    Ref: <https://github.com/Bumblebee-Project/Bumblebee/wiki/Multi-monitor-setup>
+2.  Reboot and type below  
+    
+    ```sh
+    xrandr --setprovideroutputsource modesetting NVIDIA-0
+    xrandr --auto
+    ```
+3.  Change display managers  
+    `$ sudo dpkg-reconfigure gdm3` and select `sddm`  
+    Ref: [什麽是gdm3，kdm，lightdm？如何安裝和刪除它們？](https://ubuntuqa.com/zh-tw/article/6577.html)
+4.  add script after start sddm `$ sudo vi /usr/share/sddm/scripts/Xsetup` and add below  
+    
+    ```sh
+    display1="HDMI-0"
+    display2="eDP-1-1"
+    
+    xrandr --setprovideroutputsource modesetting NVIDIA-0
+    xrandr --auto
+    xrandr --output $display1 --mode 1920x1080 --primary
+    xrandr --output $display2 --right-of $display1 --mode 1920x1080
+    ```
+    
+    `NOTE`: You need to change display variable by your self, you can use `$ xrandr` to see your connected
+5.  (Option) install `autorandr`  
+    
+    ```sh
+    sudo apt install autorandr
+    ```
+    
+    Ref: <https://github.com/phillipberndt/autorandr>
+
+
+#### Snaps in application launcher (KDE) {#snaps-in-application-launcher--kde}
+
+`$ sudo -E vi /etc/zsh/zprofile` and add add the following line:  
+
+```sh
+emulate sh -c 'source /etc/profile'
+emulate sh -c 'source /etc/profile.d/apps-bin-path.sh'
+```
+
+Ref: <https://www.reddit.com/r/kde/comments/9pjos2/comment/eh0v1um/?utm%5Fsource=share&utm%5Fmedium=web2x&context=3>  
 
 
 ## Windows {#windows}
