@@ -1,7 +1,7 @@
 #+STARTUP: overview
 #+OPTIONS: \n:t
 
-#+HUGO_BASE_DIR: ~/shdennlin-wiki/wiki.shdennlin.com
+#+HUGO_BASE_DIR: ~/shdennlin-wiki/website/wiki.shdennlin.com
 #+HUGO_SECTION: /engineering/software-engineering/
 #+EXPORT_FILE_NAME:	program-design
 
@@ -20,8 +20,9 @@
   - [[#swagger][Swagger]]
   - [[#adplatformbackend-project][adplatformbackend (project)]]
 - [[#python][Python]]
-  - [[#django][django]]
-  - [[#flask][flask]]
+  - [[#module][Module]]
+  - [[#click][Click]]
+  - [[#framework][Framework]]
 - [[#ruby-on-rails][Ruby on Rails]]
   - [[#rvm][RVM]]
   - [[#template][Template]]
@@ -135,8 +136,14 @@ Q1. 為什麼在Service定義過了method, 在Repository還要定義一次?
 
 * Python
 - [[https://iottalk.vip/static/pystyle/index.html][Python 程式碼風格指引]]
-** django
-** flask
+** Module
+** Click
+- [[https://click.palletsprojects.com/en/8.0.x/][click.palletsprojects.com - 8.0.x]] 
+- [[https://myapollo.com.tw/zh-tw/python-click/][Python 用 Click 模組製作好用的指令]]
+** Framework
+*** flask
+*** django
+
 
 * Ruby on Rails
 - introduction: [[https://blog.chh.tw/posts/ruby-on-rails-server-options/][Ruby on Rails 伺服器的選擇]]

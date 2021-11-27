@@ -1,7 +1,7 @@
 +++
 title = "System Engineering"
 author = ["Shawn Dennis Lin"]
-date = 2021-09-09T00:00:00-04:00
+date = 2021-09-09T00:00:00+08:00
 draft = false
 +++
 
@@ -14,50 +14,52 @@ draft = false
 
 ### Command {#command}
 
-| man                   | command                                             | describe                                                       | Ref                                                                                            |
-|-----------------------|-----------------------------------------------------|----------------------------------------------------------------|------------------------------------------------------------------------------------------------|
-| User                  |                                                     |                                                                |                                                                                                |
-| `adduser`, `addgroup` |                                                     | add a user or group to the system                              |                                                                                                |
-|                       | --disabled-password                                 |                                                                |                                                                                                |
-| `chown`               | `chown -R <user>:<group> <folder_1> ... <folder_n>` | Chown User and Group Recursively                               | [How To Chown Recursively on Linux](https://devconnected.com/how-to-chown-recursive-on-linux/) |
-| `passwd`              |                                                     |                                                                |                                                                                                |
-| `groups`              |                                                     | print the groups a user is in                                  |                                                                                                |
-|                       | `sudo usermod -a -G <GROUP> <yourusername>`         | Add your user to <GROUP> group                                 |                                                                                                |
-|                       | `gpasswd -d <user> <group>`                         | remote <group> from <user>                                     |                                                                                                |
-| `userdel`             | `userdel [options] LOGIN`                           | delete a user account and related files (need to use `sudo -`) | [移除 Linux 使用者](https://tw.godaddy.com/help/linux-19158)                                   |
-|                       | `userdel -r <user>`                                 |                                                                |                                                                                                |
-| System                |                                                     |                                                                |                                                                                                |
-| `lsof`                |                                                     | list open files                                                |                                                                                                |
-|                       | `sudo lsof -i -P -n \ grep LISTEN`                  | check if port is in use in                                     |                                                                                                |
-|                       | `sudo netstat -tupln \ grep LISTEN`                 |                                                                |                                                                                                |
-| `df`                  |                                                     | report file system disk space usage                            |                                                                                                |
-|                       | `df -h`                                             | print sizes in powers of 1024 (e.g., 1023M)                    |                                                                                                |
-|                       | `sodu df -sh [path]`                                | Get the Size of a Directory                                    |                                                                                                |
-| `mount`               |                                                     | mount a filesystem                                             |                                                                                                |
-| `umount`              |                                                     | unmount file systems                                           |                                                                                                |
-| `fdisk`               | `fdisk [options] device`                            | manipulate disk partition table                                |                                                                                                |
-|                       | `fdisk -l [device...]`                              | list disk                                                      |                                                                                                |
-| `mkfs`                |                                                     | build a Linux filesystem                                       |                                                                                                |
-| `e2label`             | `e2label device [ volume-label ]`                   | Change the label on an ext2/ext3/ext4 filesystem               |                                                                                                |
-| `lsblk`               |                                                     | list block devices                                             |                                                                                                |
-|                       |                                                     |                                                                |                                                                                                |
-| file                  |                                                     |                                                                |                                                                                                |
-| `tail`                |                                                     | output the last part of files                                  |                                                                                                |
-| `dd`                  |                                                     | convert and copy a file                                        |                                                                                                |
-| `find`                |                                                     | search for files in a directory hierarchy                      | [linux-find(TW)](https://blog.miniasp.com/post/2010/08/27/Linux-find-command-tips-and-notice)  |
-|                       | `sudo find / -iname 'filename' -type f`             |                                                                |                                                                                                |
-|                       | `sudo find / -iname 'dirname' -type d`              |                                                                |                                                                                                |
-| `rsync`               | `rsync [OPTION...] SRC... [DEST]`                   | a fast, versatile, remote (and local) file-copying tool        |                                                                                                |
-|                       | `rsync -avh --del SRC DEST --exclude='path'`        |                                                                |                                                                                                |
-|                       | `rsync --info=progress2 source dest`                | copy with progress bar                                         |                                                                                                |
-| `wget`                |                                                     | The non-interactive network downloader.                        |                                                                                                |
-|                       | `wget <uri> -P /path/to/folder`                     | path of file                                                   |                                                                                                |
-|                       | `wget <uri> -O /path/to/file.ext`                   | path of dictionary                                             |                                                                                                |
-|                       |                                                     |                                                                |                                                                                                |
-| server                |                                                     |                                                                |                                                                                                |
-| `nslookup`            | `nslookup [-option] [name \ -] [server]`            |                                                                | [Nslookup](https://code.yidas.com/nslookup/)                                                   |
-|                       | `nslookup -type=any domain.com`                     |                                                                |                                                                                                |
-|                       |                                                     |                                                                |                                                                                                |
+| man                       | command                                             | describe                                                       | Ref                                                                                             |
+|---------------------------|-----------------------------------------------------|----------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| User                      |                                                     |                                                                |                                                                                                 |
+| `adduser`, `addgroup`     |                                                     | add a user or group to the system                              |                                                                                                 |
+|                           | --disabled-password                                 |                                                                |                                                                                                 |
+| `chown`                   | `chown -R <user>:<group> <folder_1> ... <folder_n>` | Chown User and Group Recursively                               | [How To Chown Recursively on Linux](https://devconnected.com/how-to-chown-recursive-on-linux/)  |
+| `passwd`                  |                                                     |                                                                |                                                                                                 |
+| `groups`                  |                                                     | print the groups a user is in                                  |                                                                                                 |
+|                           | `sudo usermod -a -G <GROUP> <yourusername>`         | Add your user to <GROUP> group                                 |                                                                                                 |
+|                           | `gpasswd -d <user> <group>`                         | remote <group> from <user>                                     |                                                                                                 |
+| `userdel`                 | `userdel [options] LOGIN`                           | delete a user account and related files (need to use `sudo -`) | [移除 Linux 使用者](https://tw.godaddy.com/help/linux-19158)                                    |
+|                           | `userdel -r <user>`                                 |                                                                |                                                                                                 |
+| System                    |                                                     |                                                                |                                                                                                 |
+| `lsof`                    |                                                     | list open files                                                |                                                                                                 |
+|                           | `sudo lsof -i -P -n \ grep LISTEN`                  | check if port is in use in                                     |                                                                                                 |
+|                           | `sudo netstat -tupln \ grep LISTEN`                 |                                                                |                                                                                                 |
+| `df`                      |                                                     | report file system disk space usage                            |                                                                                                 |
+|                           | `df -h`                                             | print sizes in powers of 1024 (e.g., 1023M)                    |                                                                                                 |
+|                           | `sodu df -sh [path]`                                | Get the Size of a Directory                                    |                                                                                                 |
+| `mount`                   |                                                     | mount a filesystem                                             |                                                                                                 |
+| `umount`                  |                                                     | unmount file systems                                           |                                                                                                 |
+| `fdisk`                   | `fdisk [options] device`                            | manipulate disk partition table                                |                                                                                                 |
+|                           | `fdisk -l [device...]`                              | list disk                                                      |                                                                                                 |
+| `mkfs`                    |                                                     | build a Linux filesystem                                       |                                                                                                 |
+| `e2label`                 | `e2label device [ volume-label ]`                   | Change the label on an ext2/ext3/ext4 filesystem               |                                                                                                 |
+| `lsblk`                   |                                                     | list block devices                                             |                                                                                                 |
+| `parted` `dd` `mkfs.ext4` |                                                     |                                                                | [Format USB Drives and SD Cards](https://linuxize.com/post/how-to-format-usb-sd-card-linux/)    |
+| `mlabel`                  | `sudo mlabel -i /dev/sdb1 -s ::"LABEL HERE "`       | change a USB stick name                                        | [change a USB stick name](https://superuser.com/a/1022998)                                      |
+| `apt`, `dpkg`             |                                                     |                                                                | [一些套件相關的技巧](https://samwhelp.github.io/book-ubuntu-basic-skill/book/content/package/index.html) |
+| file                      |                                                     |                                                                |                                                                                                 |
+| `tail`                    |                                                     | output the last part of files                                  |                                                                                                 |
+| `dd`                      |                                                     | convert and copy a file                                        |                                                                                                 |
+| `find`                    |                                                     | search for files in a directory hierarchy                      | [linux-find(TW)](https://blog.miniasp.com/post/2010/08/27/Linux-find-command-tips-and-notice)   |
+|                           | `sudo find / -iname 'filename' -type f`             |                                                                |                                                                                                 |
+|                           | `sudo find / -iname 'dirname' -type d`              |                                                                |                                                                                                 |
+| `rsync`                   | `rsync [OPTION...] SRC... [DEST]`                   | a fast, versatile, remote (and local) file-copying tool        |                                                                                                 |
+|                           | `rsync -avh --del SRC DEST --exclude='path'`        |                                                                |                                                                                                 |
+|                           | `rsync --info=progress2 source dest`                | copy with progress bar                                         |                                                                                                 |
+| `wget`                    |                                                     | The non-interactive network downloader.                        |                                                                                                 |
+|                           | `wget <uri> -P /path/to/folder`                     | path of file                                                   |                                                                                                 |
+|                           | `wget <uri> -O /path/to/file.ext`                   | path of dictionary                                             |                                                                                                 |
+|                           |                                                     |                                                                |                                                                                                 |
+| server                    |                                                     |                                                                |                                                                                                 |
+| `nslookup`                | `nslookup [-option] [name \ -] [server]`            |                                                                | [Nslookup](https://code.yidas.com/nslookup/)                                                    |
+|                           | `nslookup -type=any domain.com`                     |                                                                |                                                                                                 |
+|                           |                                                     |                                                                |                                                                                                 |
 
 
 ### System {#system}
@@ -248,16 +250,12 @@ Ref: <https://www.kali.org/docs/general-use/install-nvidia-drivers-on-kali-linux
     ```
     
     Ref: <https://github.com/Bumblebee-Project/Bumblebee/wiki/Multi-monitor-setup>
-2.  Reboot and type below  
-    
-    ```sh
-    xrandr --setprovideroutputsource modesetting NVIDIA-0
-    xrandr --auto
-    ```
-3.  Change display managers  
+
+2.  Change display managers  
     `$ sudo dpkg-reconfigure gdm3` and select `sddm`  
     Ref: [什麽是gdm3，kdm，lightdm？如何安裝和刪除它們？](https://ubuntuqa.com/zh-tw/article/6577.html)
-4.  add script after start sddm `$ sudo vi /usr/share/sddm/scripts/Xsetup` and add below  
+
+3.  add script after start sddm `$ sudo vi /usr/share/sddm/scripts/Xsetup` and add below  
     
     ```sh
     display1="HDMI-0"
@@ -270,7 +268,8 @@ Ref: <https://www.kali.org/docs/general-use/install-nvidia-drivers-on-kali-linux
     ```
     
     `NOTE`: You need to change display variable by your self, you can use `$ xrandr` to see your connected
-5.  (Option) install `autorandr`  
+
+4.  (Option) install `autorandr`  
     
     ```sh
     sudo apt install autorandr

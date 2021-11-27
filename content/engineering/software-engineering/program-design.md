@@ -140,10 +140,22 @@ Q1. 為什麼在Service定義過了method, 在Repository還要定義一次?
 -   [Python 程式碼風格指引](https://iottalk.vip/static/pystyle/index.html)
 
 
-### django {#django}
+### Module {#module}
 
 
-### flask {#flask}
+### Click {#click}
+
+-   [click.palletsprojects.com - 8.0.x](https://click.palletsprojects.com/en/8.0.x/)
+-   [Python 用 Click 模組製作好用的指令](https://myapollo.com.tw/zh-tw/python-click/)
+
+
+### Framework {#framework}
+
+
+#### flask {#flask}
+
+
+#### django {#django}
 
 
 ## Ruby on Rails {#ruby-on-rails}
