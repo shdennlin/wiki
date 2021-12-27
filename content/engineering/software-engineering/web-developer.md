@@ -2,7 +2,7 @@
 title = "Web Developer"
 author = ["Shawn Dennis Lin"]
 date = 2021-09-08T00:00:00+08:00
-lastmod = 2021-11-01T01:41:32+08:00
+lastmod = 2021-12-27T19:53:27+08:00
 draft = false
 +++
 
@@ -680,18 +680,20 @@ Tutorial: [全面易懂的Docker指令大全](https://joshhu.gitbooks.io/dockerc
 
 #### Command {#command}
 
-| main      | command                                                       | describe                                      | Ref                                                                           |
-|-----------|---------------------------------------------------------------|-----------------------------------------------|-------------------------------------------------------------------------------|
-| `images`  | `docker images`                                               | List images                                   |                                                                               |
-| `create`  | `docker create [OPTIONS] IMAGE [COMMAND] [ARG...]`            | Create a new container                        | [docker creat](https://docs.docker.com/engine/reference/commandline/create/)  |
-| `ps`      | `docker ps`                                                   | List containers                               |                                                                               |
-| `pull`    | `docker pull [OPTIONS] NAME[:TAG @DIGEST]`                    | Pull an image or a repository from a registry |                                                                               |
-| `kill`    | `docker kill [OPTIONS] CONTAINER [CONTAINER...]`              | Kill one or more running containers           |                                                                               |
-| `rm`      | `docker rm $(docker ps -aq)`                                  | Kill all running containers                   |                                                                               |
-| `run`     | `docker run -it --name cat --user test centos:latest /bin/sh` | run image                                     |                                                                               |
-| `exec`    | `docker exec -it <container name> <command>`                  |                                               |                                                                               |
-| `commit`  | `docker commit  [OPTIONS] CONTAINER [REPOSITORY[:TAG]]`       |                                               | [docker commit](https://docs.docker.com/engine/reference/commandline/commit/) |
-| `restart` | `docker restart <container name>`                             |                                               |                                                                               |
+| main      | command                                                                                            | describe                                          | Ref                                                                           |
+|-----------|----------------------------------------------------------------------------------------------------|---------------------------------------------------|-------------------------------------------------------------------------------|
+| `images`  | `docker images`                                                                                    | List images                                       |                                                                               |
+| `create`  | `docker create [OPTIONS] IMAGE [COMMAND] [ARG...]`                                                 | Create a new container                            | [docker creat](https://docs.docker.com/engine/reference/commandline/create/)  |
+| `ps`      | `docker ps`                                                                                        | List containers                                   |                                                                               |
+| `pull`    | `docker pull [OPTIONS] NAME[:TAG @DIGEST]`                                                         | Pull an image or a repository from a registry     |                                                                               |
+| `kill`    | `docker kill [OPTIONS] CONTAINER [CONTAINER...]`                                                   | Kill one or more running containers               |                                                                               |
+| `rm`      | `docker rm $(docker ps -aq)`                                                                       | Kill all running containers                       |                                                                               |
+| `run`     | `docker run -it --name cat --user test centos:latest /bin/sh`                                      | run image                                         |                                                                               |
+| `exec`    | `docker exec -it <container name> <command>`                                                       |                                                   |                                                                               |
+| `commit`  | `docker commit  [OPTIONS] CONTAINER [REPOSITORY[:TAG]]`                                            |                                                   | [docker commit](https://docs.docker.com/engine/reference/commandline/commit/) |
+| `restart` | `docker restart <container name>`                                                                  |                                                   |                                                                               |
+|           | `docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id` | get a Docker container's IP address from the host |                                                                               |
+|           |                                                                                                    |                                                   |                                                                               |
 
 
 #### ref: {#ref}

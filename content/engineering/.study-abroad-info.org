@@ -1,8 +1,5 @@
 #+STARTUP: content
 #+OPTIONS: \n:t
-
-#+HUGO_BASE_DIR: ~/shdennlin-wiki/wiki.shdennlin.com
-#+HUGO_SECTION: /engineering/
 #+EXPORT_FILE_NAME:	study-abroad-info
 
 #+TITLE:	Study Abroad Information
@@ -18,6 +15,7 @@
 4. uc davis
 5. 密西根大學
 6. Purdue University
+
 
 
 ** University Rank
@@ -37,3 +35,7 @@
 
 ** Video Reference
 + [[https://youtu.be/BtzoHQMWh7][加拿大 美國研究所申請經驗分享 秘訣資源大公開]]
+
+
+
+

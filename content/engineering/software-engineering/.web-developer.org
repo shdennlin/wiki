@@ -1,10 +1,6 @@
 #+STARTUP: overview
 #+OPTIONS: \n:t
-
-#+HUGO_BASE_DIR: ~/shdennlin-wiki/wiki.shdennlin.com
-#+HUGO_SECTION: /engineering/software-engineering/
 #+EXPORT_FILE_NAME:	web-developer
-
 #+TITLE:	Web Developer
 #+AUTHOR:	Shawn Dennis Lin
 #+EMAIL:	ShawnDennisLin@gmail.com
@@ -440,18 +436,20 @@ Install Docker Engine on Ubuntu: https://docs.docker.com/engine/install/ubuntu/
 Tutorial: [[https://joshhu.gitbooks.io/dockercommands/content/][全面易懂的Docker指令大全]]
 
 *** Command
-| main      | command                                                       | describe                                      | Ref           |
-|-----------+---------------------------------------------------------------+-----------------------------------------------+---------------|
-| =images=  | =docker images=                                               | List images                                   |               |
-| =create=  | =docker create [OPTIONS] IMAGE [COMMAND] [ARG...]=            | Create a new container                        | [[https://docs.docker.com/engine/reference/commandline/create/][docker creat]]  |
-| =ps=      | =docker ps=                                                   | List containers                               |               |
-| =pull=    | =docker pull [OPTIONS] NAME[:TAG @DIGEST]=                    | Pull an image or a repository from a registry |               |
-| =kill=    | =docker kill [OPTIONS] CONTAINER [CONTAINER...]=              | Kill one or more running containers           |               |
-| =rm=      | =docker rm $(docker ps -aq)=                                  | Kill all running containers                   |               |
-| =run=     | =docker run -it --name cat --user test centos:latest /bin/sh= | run image                                     |               |
-| =exec=    | =docker exec -it <container name> <command>=                  |                                               |               |
-| =commit=  | =docker commit  [OPTIONS] CONTAINER [REPOSITORY[:TAG]]=       |                                               | [[https://docs.docker.com/engine/reference/commandline/commit/][docker commit]] |
-| =restart= | =docker restart <container name>=                             |                                               |               |
+| main      | command                                                                                            | describe                                          | Ref           |
+|-----------+----------------------------------------------------------------------------------------------------+---------------------------------------------------+---------------|
+| =images=  | ~docker images~                                                                                    | List images                                       |               |
+| =create=  | ~docker create [OPTIONS] IMAGE [COMMAND] [ARG...]~                                                 | Create a new container                            | [[https://docs.docker.com/engine/reference/commandline/create/][docker creat]]  |
+| =ps=      | ~docker ps~                                                                                        | List containers                                   |               |
+| =pull=    | ~docker pull [OPTIONS] NAME[:TAG @DIGEST]~                                                         | Pull an image or a repository from a registry     |               |
+| =kill=    | ~docker kill [OPTIONS] CONTAINER [CONTAINER...]~                                                   | Kill one or more running containers               |               |
+| =rm=      | ~docker rm $(docker ps -aq)~                                                                       | Kill all running containers                       |               |
+| =run=     | ~docker run -it --name cat --user test centos:latest /bin/sh~                                      | run image                                         |               |
+| =exec=    | ~docker exec -it <container name> <command>~                                                       |                                                   |               |
+| =commit=  | ~docker commit  [OPTIONS] CONTAINER [REPOSITORY[:TAG]]~                                            |                                                   | [[https://docs.docker.com/engine/reference/commandline/commit/][docker commit]] |
+| =restart= | ~docker restart <container name>~                                                                  |                                                   |               |
+|           | ~docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id~ | get a Docker container's IP address from the host |               |
+|           |                                                                                                    |                                                   |               |
 
 *** ref:
 1. [X] [[https://docs.docker.com/docker-for-windows/install/][Install Docker Desktop on Windows (docker docs)]]

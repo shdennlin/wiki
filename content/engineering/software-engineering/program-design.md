@@ -7,6 +7,8 @@ draft = false
 
 ## Program Design {#program-design}
 
+-   [常見的五個開源專案授權條款，使用軟體更自由](https://noob.tw/open-source-licenses/)
+
 
 ### namespace {#namespace}
 
@@ -137,13 +139,15 @@ Q1. 為什麼在Service定義過了method, 在Repository還要定義一次?
 
 ## Python {#python}
 
+-   [My Python Library](https://github.com/shdennlin/python-library)
 -   [Python 程式碼風格指引](https://iottalk.vip/static/pystyle/index.html)
+-   [结构化您的工程](https://pythonguidecn.readthedocs.io/zh/latest/writing/structure.html)
 
 
 ### Module {#module}
 
 
-### Click {#click}
+#### Click {#click}
 
 -   [click.palletsprojects.com - 8.0.x](https://click.palletsprojects.com/en/8.0.x/)
 -   [Python 用 Click 模組製作好用的指令](https://myapollo.com.tw/zh-tw/python-click/)

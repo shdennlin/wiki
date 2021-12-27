@@ -1,10 +1,6 @@
 #+STARTUP: overview
 #+OPTIONS: \n:t
-
-#+HUGO_BASE_DIR: ~/shdennlin-wiki/website/wiki.shdennlin.com
-#+HUGO_SECTION: /engineering/software-engineering/
 #+EXPORT_FILE_NAME:	program-design
-
 #+TITLE:	Program Design
 #+AUTHOR:	Shawn Dennis Lin
 #+EMAIL:	ShawnDennisLin@gmail.com
@@ -21,7 +17,6 @@
   - [[#adplatformbackend-project][adplatformbackend (project)]]
 - [[#python][Python]]
   - [[#module][Module]]
-  - [[#click][Click]]
   - [[#framework][Framework]]
 - [[#ruby-on-rails][Ruby on Rails]]
   - [[#rvm][RVM]]
@@ -46,6 +41,7 @@
   - [[#ref-book][Ref book]]
 
 * Program Design
+- [[https://noob.tw/open-source-licenses/][常見的五個開源專案授權條款，使用軟體更自由]]
 ** namespace
 - [ ] [[https://zh.wikipedia.org/wiki/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4][命名空間 - wiki]]
 - [ ] [[https://tw-google-styleguide.readthedocs.io/en/latest/google-cpp-styleguide/scoping.html][2.1.1. 匿名命名空間 - Google 開源專案風格指南(繁體中文版)]]
@@ -135,15 +131,17 @@ Q1. 為什麼在Service定義過了method, 在Repository還要定義一次?
    - use swagger?
 
 * Python
+- [[https://github.com/shdennlin/python-library][My Python Library]]
 - [[https://iottalk.vip/static/pystyle/index.html][Python 程式碼風格指引]]
+- [[https://pythonguidecn.readthedocs.io/zh/latest/writing/structure.html][结构化您的工程]]
+
 ** Module
-** Click
+*** Click
 - [[https://click.palletsprojects.com/en/8.0.x/][click.palletsprojects.com - 8.0.x]] 
 - [[https://myapollo.com.tw/zh-tw/python-click/][Python 用 Click 模組製作好用的指令]]
 ** Framework
 *** flask
 *** django
-
 
 * Ruby on Rails
 - introduction: [[https://blog.chh.tw/posts/ruby-on-rails-server-options/][Ruby on Rails 伺服器的選擇]]

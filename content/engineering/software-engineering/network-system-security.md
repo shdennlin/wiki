@@ -309,7 +309,7 @@ Ref:
 -   [WebSocket-wiki](https://zh.wikipedia.org/wiki/WebSocket)
 
 
-## Interne {#interne}
+## Internet {#internet}
 
 
 ### IPv4 vs. IPv6 {#ipv4-vs-dot-ipv6}

@@ -2,7 +2,6 @@
 title = "Study Abroad Information"
 author = ["Shawn Dennis Lin"]
 date = 2021-09-08T00:00:00+08:00
-lastmod = 2021-09-08T01:17:55+08:00
 draft = false
 +++
 
