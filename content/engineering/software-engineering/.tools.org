@@ -1,10 +1,6 @@
 #+STARTUP: overview
 #+OPTIONS: \n:t
-
-#+HUGO_BASE_DIR: ~/shdennlin-wiki/wiki.shdennlin.com
-#+HUGO_SECTION: /engineering/software-engineering/
 #+EXPORT_FILE_NAME:	tools
-
 #+TITLE:	Tools
 #+AUTHOR:	Shawn Dennis Lin
 #+EMAIL:	ShawnDennisLin@gmail.com
@@ -67,6 +63,17 @@ scp -i ~/.ssh/sslsend ~/scp_test/scp_test1 itintern.nb.ubuntu@192.168.3.24:/home
 - [ ] [[https://ihower.tw/blog/archives/7837][SSH agent forwarding 的應用]]
 - [ ] [[https://myapollo.com.tw/zh-tw/ssh-port-forwarding/][SSH Port Forwarding / Agent Forwarding]]
 *** Action or Problem
+**** How to Stop SSH Session From Getting Timed Out
+~vi ~/.ssh/config~ and add
+#+begin_src sh
+Host *
+ServerAliveInterval 300
+ServerAliveCountMax 2
+#+end_src
+These settings will make the SSH client or server send a null packet to the other side every 300 seconds (5 minutes), and give up if it doesn’t receive any response after 2 tries, at which point the connection is likely to have been discarded anyway.
+
+Ref: [[https://www.thegeekdiary.com/how-to-stop-ssh-session-from-getting-timed-out/][How to Stop SSH Session From Getting Timed Out]]
+
 **** 在設定 windows ssh key 時，會連線不上 git lab
 #+begin_src shell
 Unable to start ssh-agent service, error:1058
@@ -170,6 +177,7 @@ note: 已經在 2 台 server 都有設定過 ssh 的連接(ssh-key)
 
 **** ssh remote host identification has changed
 https://stackoverflow.com/a/23150466/14740020
+
 ** git
 *** save account and password
 + [[https://officeguide.cc/git-save-username-and-password-tutorial/][Git 設定自動儲存帳號、密碼教學]]

@@ -6,6 +6,25 @@
 #+EMAIL:	ShawnDennisLin@gmail.com
 #+DATE:	[2021-09-09 Thu]
 
+* CTF -- Catch The Flag
+** Web Exploitation
+** Cryptography
+# + [[https://en.wikipedia.org/wiki/ROT13][ROT13]] -- https://rot13.com/
+** Reverse Engineering
+** Forensics
++ exiftool
+  ex: ~exiftool XXX.jpg~
+** General Skills
++ base64
+  ex: ~echo "XXX" | base64 -d~
++ convert ASCII values into ASCII characters
+  ~echo "XXX" | awk '{ printf("%c" ,$0); }'~
++ nc
+  + [[https://blog.gtwang.org/linux/linux-utility-netcat-examples/][Netcat（Linux nc 指令）網路管理者工具實用範例]]
++ [[https://codewithrockstar.com/online][Rockstar]]
+  
+** Binary Exploitation
+** Uncategorized
 * Network System Security
 ** SSL
 *** 研究Certbot : 自動更新SSL
@@ -252,16 +271,17 @@ use git and Jenkins
 3. [[http://blog.tonycube.com/2019/02/lets-encrypt-wildcard.html][Let's Encrypt Wildcard 申請流程]]
 4. [[https://itsmetommy.com/2019/08/03/auto-renew-lets-encrypt-wildcard-certificate-using-google-cloud-dns/][Auto-Renew Let’s Encrypt Wildcard Certificate using Google Cloud DNS]]
    
-
 ** WebSocket
 + [[https://zh.wikipedia.org/wiki/WebSocket][WebSocket-wiki]]
 
 * Internet
 ** IPv4 vs. IPv6
 - [[https://www.ithome.com.tw/tech/92046][認識IPv4與IPv6的差異]]
+- [[https://www.zymr.com/understanding-ip-address-subnets/][Understanding IP Address and Subnets]]
 ** DHCP [[https://zh.wikipedia.org/wiki/%E5%8A%A8%E6%80%81%E4%B8%BB%E6%9C%BA%E8%AE%BE%E7%BD%AE%E5%8D%8F%E8%AE%AE][DHCP]]
-
 ** HTTP header fields
 - [[https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5][HTTP header fields]]
+
+
 
 

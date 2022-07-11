@@ -582,3 +582,8 @@ Zonal: ex: asia-east1-a, asia-east1-b, northamerica-northeast1-a, northamerica-n
    
 *** Transferring data between Google Drive and Google Cloud Storage using Google Colab
 https://philipplies.medium.com/transferring-data-from-google-drive-to-google-cloud-storage-using-google-colab-96e088a8c041
+
+* Project
+** Wordpres
+*** Child Theme
++ [[https://developer.wordpress.org/themes/advanced-topics/child-themes/][Home / Theme Handbook / Advanced Theme Topics / Child Themes]]

@@ -5,6 +5,41 @@ date = 2021-09-09T00:00:00+08:00
 draft = false
 +++
 
+## CTF -- Catch The Flag {#ctf-catch-the-flag}
+
+
+### Web Exploitation {#web-exploitation}
+
+
+### Cryptography {#cryptography}
+
+
+### Reverse Engineering {#reverse-engineering}
+
+
+### Forensics {#forensics}
+
+-   exiftool  
+    ex: `exiftool XXX.jpg`
+
+
+### General Skills {#general-skills}
+
+-   base64  
+    ex: `echo "XXX" | base64 -d`
+-   convert ASCII values into ASCII characters  
+    `echo "XXX" | awk '{ printf("%c" ,$0); }'`
+-   nc  
+    -   [Netcat（Linux nc 指令）網路管理者工具實用範例](https://blog.gtwang.org/linux/linux-utility-netcat-examples/)
+-   [Rockstar](https://codewithrockstar.com/online)
+
+
+### Binary Exploitation {#binary-exploitation}
+
+
+### Uncategorized {#uncategorized}
+
+
 ## Network System Security {#network-system-security}
 
 
@@ -315,6 +350,7 @@ Ref:
 ### IPv4 vs. IPv6 {#ipv4-vs-dot-ipv6}
 
 -   [認識IPv4與IPv6的差異](https://www.ithome.com.tw/tech/92046)
+-   [Understanding IP Address and Subnets](https://www.zymr.com/understanding-ip-address-subnets/)
 
 
 ### DHCP [DHCP](https://zh.wikipedia.org/wiki/%E5%8A%A8%E6%80%81%E4%B8%BB%E6%9C%BA%E8%AE%BE%E7%BD%AE%E5%8D%8F%E8%AE%AE) {#dhcp-dhcp}

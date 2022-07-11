@@ -82,6 +82,22 @@ scp -i ~/.ssh/sslsend ~/scp_test/scp_test1 itintern.nb.ubuntu@192.168.3.24:/home
 
 <!--list-separator-->
 
+-  How to Stop SSH Session From Getting Timed Out
+
+    `vi ~/.ssh/config` and add  
+    
+    ```sh
+    Host *
+    ServerAliveInterval 300
+    ServerAliveCountMax 2
+    ```
+    
+    These settings will make the SSH client or server send a null packet to the other side every 300 seconds (5 minutes), and give up if it doesn’t receive any response after 2 tries, at which point the connection is likely to have been discarded anyway.  
+    
+    Ref: [How to Stop SSH Session From Getting Timed Out](https://www.thegeekdiary.com/how-to-stop-ssh-session-from-getting-timed-out/)  
+
+<!--list-separator-->
+
 -  在設定 windows ssh key 時，會連線不上 git lab
 
     ```shell

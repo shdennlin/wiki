@@ -144,6 +144,47 @@ Q1. 為什麼在Service定義過了method, 在Repository還要定義一次?
 -   [结构化您的工程](https://pythonguidecn.readthedocs.io/zh/latest/writing/structure.html)
 
 
+### dereactor {#dereactor}
+
+-   [Property](https://www.maxlist.xyz/2019/12/25/python-property/)
+
+
+### Tools {#tools}
+
+
+#### Poetry {#poetry}
+
+-   Github: <https://github.com/python-poetry/poetry>
+-   My basic configuration:  
+    
+    ```toml
+    [tool.poetry]
+    name = "<Project Name>"
+    version = "1.0.0"
+    description = "<Project Description>"
+    authors = ["shdennlin <shawndennislin@gmail.com>"]
+    
+    [tool.poetry.dependencies]
+    python = ">=3.8"
+    
+    [tool.poetry.dev-dependencies]
+    jedi = ">=0.13.0"
+    json-rpc = ">=1.8.1"
+    service-factory = ">=0.1.5"
+    flake8 = "^4.0.1"
+    autoflake = "^1.4"
+    importmagic = "^0.1.7"
+    epc = "^0.0.5"
+    yapf = "^0.31.0"
+    toml = "^0.10.2"
+    isort = "^5.10.1"
+    
+    [build-system]
+    requires = ["poetry-core>=1.0.0"]
+    build-backend = "poetry.core.masonry.api"
+    ```
+
+
 ### Module {#module}
 
 

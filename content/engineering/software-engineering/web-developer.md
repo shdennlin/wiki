@@ -2,7 +2,7 @@
 title = "Web Developer"
 author = ["Shawn Dennis Lin"]
 date = 2021-09-08T00:00:00+08:00
-lastmod = 2021-12-27T19:53:27+08:00
+lastmod = 2022-01-11T11:12:28+08:00
 draft = false
 +++
 
@@ -874,4 +874,15 @@ Note:
 
 #### Transferring data between Google Drive and Google Cloud Storage using Google Colab {#transferring-data-between-google-drive-and-google-cloud-storage-using-google-colab}
 
-<https://philipplies.medium.com/transferring-data-from-google-drive-to-google-cloud-storage-using-google-colab-96e088a8c041>
+<https://philipplies.medium.com/transferring-data-from-google-drive-to-google-cloud-storage-using-google-colab-96e088a8c041>  
+
+
+## Project {#project}
+
+
+### Wordpres {#wordpres}
+
+
+#### Child Theme {#child-theme}
+
+-   [Home / Theme Handbook / Advanced Theme Topics / Child Themes](https://developer.wordpress.org/themes/advanced-topics/child-themes/)
