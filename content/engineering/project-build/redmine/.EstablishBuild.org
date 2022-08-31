@@ -1,0 +1,343 @@
+#+STARTUP: overview
+#+OPTIONS: \n:t
+
+#+HUGO_BASE_DIR: ~/shdennlin-wiki/wiki.shdennlin.com
+#+HUGO_SECTION: /engineering/project-build/redmine/
+#+EXPORT_FILE_NAME:	EstablishBuild
+
+#+TITLE: Establish Build
+#+AUTHOR:	Shawn Dennis Lin
+#+EMAIL:	ShawnDennisLin@gmail.com
+#+DATE:	[2021-09-09 Thu]
+
++ official website: https://www.redmine.org
++ Download Page: https://www.redmine.org/projects/redmine/wiki/Download
++ Installation Guide: https://www.redmine.org/projects/redmine/wiki/redmineinstall
++ Ref: https://www.redmine.org/projects/redmine/wiki/HowTo_Install_Redmine_on_Debian_9
+
+* Establish Redmine from the beginning
+
+** VM initial
+#+begin_src sh
+# update
+sudo apt update && sudo apt upgrade -y
+# change time zone
+sudo dpkg-reconfigure tzdata
+#+end_src
+
+** Download Redmine
+#+begin_src sh
+#  insatll version-control
+sudo apt-get install -y subversion git
+sudo apt install redmine-pgsql libpq-dev libcurl4-gnutls-dev
+
+# add user
+sudo adduser redmine --disabled-password
+sudo usermod -aG sudo redmine
+sudo su redmine
+cd
+
+# get redmine-4.2
+svn co https://svn.redmine.org/redmine/branches/4.2-stable redmine-4.2
+#+end_src
+
+** Install PostgreSQL
+Step1. install PostgreSQL 
+#+begin_src sh
+# Create the file repository configuration:
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+
+# Import the repository signing key:
+sudo apt install wget
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+
+# Update the package lists:
+sudo apt-get update
+
+# Install the latest version of PostgreSQL.
+# If you want a specific version, use 'postgresql-12' or similar instead of 'postgresql':
+sudo apt-get -y install postgresql-13 
+#+end_src
+
+Step2. Create an empty database and accompanying user
+#+begin_src sh
+sudo -u postgres psql
+#+end_src
+#+begin_src sql
+CREATE ROLE redmine LOGIN ENCRYPTED PASSWORD 'my_password' NOINHERIT VALID UNTIL 'infinity';
+CREATE DATABASE redmine WITH ENCODING='UTF8' OWNER=redmine;
+ALTER DATABASE "redmine" SET datestyle="ISO,MDY";
+
+\du
+\l
+show datestyle;
+#+end_src
+
+Step3. Database connection configuration
+#+begin_src sh
+sudo su redmine
+cd
+cp ~/redmine-4.2/config/database.yml.example ~/redmine-4.2/config/database.yml
+vi ~/redmine-4.2/config/database.yml
+#+end_src
+
+** Install Ruby, redmine and Dependencies installation
+see https://rvm.io/rvm/install
+Step1. Install ruby
+#+begin_src sh
+sudo apt-get install gnupg2 -y
+
+sudo su redmine
+cd
+gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+
+\curl -sSL https://get.rvm.io | bash -s stable
+echo "source $HOME/.rvm/scripts/rvm" >> ~/.bash_profile
+source ~/.rvm/scripts/rvm
+type rvm | head -n 1
+
+rvm install 2.7.3
+rvm use 2.7.3
+rvm use 2.7.3 --default
+rvm list
+ruby -v
+
+echo "export GEM_HOME=\$HOME/.gem" >> ~/.bashrc
+source ~/.bashrc
+#+end_src
+
+Step2. Install Redmine
+#+begin_src sh
+cd ~/redmine-4.2
+gem install bundler
+bundle install --without development test
+bundle exec rake generate_secret_token
+RAILS_ENV=production bundle exec rake db:migrate
+RAILS_ENV=production bundle exec rake redmine:load_default_data
+
+# =====================
+mkdir -p tmp tmp/pdf public/plugin_assets
+sudo chown -R redmine:redmine files log tmp public/plugin_assets
+sudo chmod -R 755 files log tmp public/plugin_assets
+
+sudo find files log tmp public/plugin_assets -type f -exec chmod -x {} +
+
+# Test the installation
+bundle exec rails server webrick -e production
+# open http://localhost:3000/
+
+#+end_src
+
+** Passenger + Nginx
+Ref: https://www.phusionpassenger.com/library/install/nginx/install/oss/rubygems_rvm/
+Step 1: install gem
+#+begin_src sh
+gem install passenger --no-rdoc --no-ri
+#+end_src
+
+Step 3: run the Passenger Nginx module installer
+#+begin_src sh
+source ~/.bashrc
+source ~/.bash_profile
+# NOTE RAM need 2GB or more
+rvmsudo passenger-install-nginx-module
+#+end_src
+
+Step 4: validate installation
+#+begin_src sh
+rvmsudo passenger-config validate-install
+#+end_src
+
+** Using Nginx
++ Starting Nginx
+  You can start Nginx by running:
+  ~sudo /opt/nginx/sbin/nginx~
++ Shutting down Nginx
+  You can shut down Nginx by killing its PID with the kill command. To find out what Nginx's PID is, use the ps command. For example:  
+  ~ps auxw | grep nginx~
+
++ Restarting Nginx
+  Restarting Nginx is the same as shutting down Nginx, and starting it again. For example:
+  #+begin_src sh
+  sudo kill $(cat /opt/nginx/logs/nginx.pid)
+  sudo /opt/nginx/sbin/nginx
+  #+end_src
+
+*** Nginx Configuration
+1. ~sudo -E vi /opt/nginx/conf/nginx.conf~
+2. uncomment =user nobody= and set to =user redmine=
+   
+** Install SSL
+Ref: https://certbot.eff.org/lets-encrypt/debianbuster-nginx
+
+Step1. Install SSL by Let's encrypt
+#+begin_src sh
+# install certbot
+sudo apt install -y snapd
+sudo snap install core; sudo snap refresh core
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+sudo certbot --version
+# auto build ssl by certbot
+sudo certbot certonly \
+     --webroot -w /home/redmine/redmine-4.2/public \
+     -d redmine.shdennlin.org \
+     -m shawndennislin@gmail.com \
+     --agree-tos
+# Test automatic renewal 
+sudo certbot renew --dry-run
+#+end_src
+
+Step2. SSL configuration in nginx
+1. ~sudo -E vi /opt/nginx/conf/nginx.conf~
+   #+begin_src nginx
+   server {
+       # omit...
+
+       listen 443 ssl;
+
+       # RSA certificate
+       ssl_certificate /etc/letsencrypt/live/redmine.shdennlin.org/fullchain.pem;
+       ssl_certificate_key /etc/letsencrypt/live/redmine.shdennlin.org/privkey.pem;
+   }
+   #+end_src
+
+2. reload Nginx
+   #+begin_src sh
+   # test Nginx
+   sudo /opt/nginx/sbin/nginx -t
+
+   # restart nginx
+   sudo kill $(cat /opt/nginx/logs/nginx.pid)
+   sudo /opt/nginx/sbin/nginx
+   # show nginx status
+   ps auxw | grep nginx
+   #+end_src
+
+** Install Additional dependencies
+
+*** Ghostscript
+Ref: https://www.ghostscript.com/doc/9.54.0/Install.htm
+Ghostscript is an interpreter for the PostScript®  language and PDF files. It is available under either the GNU GPL Affero license or  licensed for commercial use from Artifex Software, Inc. It has been under active development for over 30 years and has been ported to several different systems during this time. Ghostscript consists of a PostScript interpreter layer and a graphics library.
+#+begin_src sh
+wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9540/ghostscript-9.54.0.tar.gz
+tar -xvzf ghostscript-9.54.0.tar.gz
+rm -rf ghostscript-9.54.0.tar.gz
+cd ghostscript-9.54.0
+./configure
+make 
+sudo make install
+#+end_src
+
+*** FreeType
+Ref: https://www.freetype.org/download.html#stable-releases
+#+begin_src sh
+wget https://download.savannah.gnu.org/releases/freetype/freetype-2.10.0.tar.gz
+tar -xvzf freetype-2.10.0.tar.gz
+rm -rf freetype-2.10.0.tar.gz
+cd freetype-2.10.0
+./configure
+make 
+sudo make install
+#+end_src
+
+*** ImageMagick
+Ref: https://imagemagick.org/script/install-source.php
+#+begin_src sh
+sudo apt-get install -y libltdl-dev
+git clone --depth 1 https://github.com/ImageMagick/ImageMagick.git ImageMagick-7.0.11
+cd ImageMagick-7.0.11
+./configure --with-modules
+make
+sudo make install
+sudo ldconfig /usr/local/lib
+/usr/local/bin/convert logo: logo.gif
+make check
+
+# check
+magick identify -version
+#+end_src
+
+
+** Gmail Configuration
+Ref: https://www.redmine.org/projects/redmine/wiki/emailconfiguration#GMail-Google-Apps
++ Error: =5.7.8 Username and Password not accepted. Learn more....=
+  Solve: https://stackoverflow.com/a/58947125/14740020
++ Error: =send-mail: Authorization failed 534 5.7.14=
+  Slove: https://serverfault.com/a/672182
+
+  
+* Plugins
+Ref: https://www.redmine.org/plugins
+
+*** WYSIWYG Editor
+Ref: https://redmine.org/plugins/redmine_wysiwyg_editor
+Github: https://github.com/taqueci/redmine_wysiwyg_editor
+#+begin_src sh
+cd ~/redmine-4.2/plugins
+git clone https://github.com/taqueci/redmine_wysiwyg_editor.git
+cd redmine_wysiwyg_editor
+git reset --hard 0.21.1
+touch /home/redmine/redmine-4.2/tmp/restart.txt
+#+end_src
+
+*** Agile
+Ref: https://www.redmine.org/plugins/redmine_agile
+Install: https://www.redmineup.com/pages/help/agile/installing-redmine-agile-plugin-on-linux?utm_source=Main&utm_medium=email&utm_campaign=Download_plugin_email&utm_term=download_plugin_email&utm_content=installation_guide
+#+begin_src sh
+cd ~/redmine-4.2/plugins
+wget -O redmine_agile-1_6_1-light.zip <URL> 
+unzip redmine_agile-1_6_1-light
+rm -rf redmine_agile-1_6_1-light.zip
+
+cd ~/redmine-4.2
+bundle install --without development test --no-deployment
+bundle exec rake redmine:plugins NAME=redmine_agile RAILS_ENV=production
+touch /home/redmine/redmine-4.2/tmp/restart.txt
+#+end_src
+
+*** checklist
+Ref: https://www.redmine.org/plugins/redmine_checklists
+Install: https://www.redmineup.com/pages/help/checklists/installing-redmine-checklists-plugin-on-linux?utm_source=Main&utm_medium=email&utm_campaign=Download_plugin_email&utm_term=download_plugin_email&utm_content=installation_guide
+#+begin_src sh
+cd ~/redmine-4.2/plugins
+wget -O redmine_checklists-3_1_18-light.zip <URL> 
+unzip redmine_checklists-3_1_18-light.zip
+rm -rf redmine_checklists-3_1_18-light.zip
+
+cd ~/redmine-4.2
+bundle install --without development test --no-deployment
+bundle exec rake redmine:plugins NAME=redmine_checklists RAILS_ENV=production
+touch /home/redmine/redmine-4.2/tmp/restart.txt
+#+end_src
+
+*** Attach image from clipboard (can't use in Redmine 4.2.1.stable.20997)
+Ref: https://www.redmine.org/plugins/clipboard_image_paste
+Install: https://github.com/peclik/clipboard_image_paste/blob/master/README.textile
+#+begin_src sh
+cd ~/redmine-4.2/plugins
+git clone https://github.com/peclik/clipboard_image_paste.git
+cd clipboard_image_paste
+git reset --hard v1.9
+
+cd ~/redmine-4.2
+touch /home/redmine/redmine-4.2/tmp/restart.txt
+#+end_src
+
+* Themes
+Ref: https://www.redmine.org/projects/redmine/wiki/theme_list
+** PurpleMine 2
+Github: https://github.com/mrliptontea/PurpleMine2
+#+begin_src sh
+cd ~/redmine-4.2/public/themes/
+git clone https://github.com/mrliptontea/PurpleMine2.git
+cd PurpleMine2
+git reset --hard v2.14.0
+#+end_src
+
+* Action
+** Restart Redmine
+#+begin_src sh
+touch /home/redmine/redmine-4.2/tmp/restart.txt
+#+end_src
+Ref: https://stackoverflow.com/a/31787437/14740020

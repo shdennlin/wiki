@@ -1,0 +1,33 @@
+#+STARTUP: overview
+#+OPTIONS: \n:t
+
+#+HUGO_BASE_DIR: ~/shdennlin-wiki/wiki.shdennlin.com
+#+HUGO_SECTION: /engineering/
+#+EXPORT_FILE_NAME:	Editor
+
+#+TITLE: Editor
+#+AUTHOR:	Shawn Dennis Lin
+#+EMAIL:	ShawnDennisLin@gmail.com
+#+DATE:	[2021-09-09 Thu]
+
+* Emacs
+** Action
+*** Reload environment variables
+Step:
+1. type =M-:= ~(getenv "PATH")~
+2. Install package =exec-path-from-shell=
+3. Do below
+#+begin_src lisp
+(exec-path-from-shell-initialize)
+;; (exec-path-from-shell-copy-env)
+#+end_src
+Ref: [[https://emacs.stackexchange.com/questions/6104/reload-environment-variables][Reload environment variables]], [[https://github.com/purcell/exec-path-from-shell][https://github.com/purcell/exec-path-from-shell]]
+
+** Command
+| key         | function                   | describe                                        |
+|-------------+----------------------------+-------------------------------------------------|
+| ~C-c C-x \~ | org-toggle-pretty-entities | Toggle display of entities as UTF-8 characters. |
+|             |                            |                                                 |
+
+
+** Problem

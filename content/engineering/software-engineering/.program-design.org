@@ -1,0 +1,272 @@
+#+STARTUP: overview
+#+OPTIONS: \n:t
+#+EXPORT_FILE_NAME:	program-design
+#+TITLE:	Program Design
+#+AUTHOR:	Shawn Dennis Lin
+#+EMAIL:	ShawnDennisLin@gmail.com
+#+DATE:	[2021-09-09 Thu]
+
+* Content :TOC_2_gh:noexport:
+- [[#program-design][Program Design]]
+  - [[#namespace][namespace]]
+  - [[#hardcode][HardCode]]
+- [[#java][JAVA]]
+  - [[#api][API]]
+  - [[#spring][Spring]]
+  - [[#swagger][Swagger]]
+  - [[#adplatformbackend-project][adplatformbackend (project)]]
+- [[#python][Python]]
+  - [[#decorator][decorator]]
+  - [[#tools][Tools]]
+  - [[#module][Module]]
+  - [[#framework][Framework]]
+- [[#ruby-on-rails][Ruby on Rails]]
+  - [[#rvm][RVM]]
+  - [[#template][Template]]
+  - [[#plugins][Plugins]]
+  - [[#shell-script][Shell Script]]
+- [[#design-pattern][Design Pattern]]
+  - [[#the-strategy-pattern][The Strategy Pattern]]
+  - [[#the-observer-pattern-keeping-your-objects-in-the-know][The Observer Pattern: Keeping your Objects in the know]]
+  - [[#the-decorator-pattern-decorating-objects][The Decorator Pattern: Decorating Objects]]
+  - [[#the-factory-pattern-baking-with-oo-goodness][The Factory Pattern: Baking with OO Goodness]]
+  - [[#the-singleton-pattern-one-of-a-kind-objects][The Singleton Pattern: One of a Kind Objects]]
+  - [[#the-command-pattern-encapsulating-invocation][The Command Pattern: Encapsulating Invocation]]
+  - [[#the-adapter-and-facade-patterns-being-adaptive][The Adapter and Facade Patterns: Being Adaptive]]
+  - [[#the-template-method-pattern-encapsulating-algorithms][The Template Method Pattern: Encapsulating Algorithms]]
+  - [[#the-iterator-and-composite-patterns-well-managed-collections][The Iterator and Composite Patterns: Well-Managed Collections]]
+  - [[#the-state-pattern-the-state-of-things][The State Pattern: The State of Things]]
+  - [[#the-proxy-pattern-controlling-object-access][The Proxy Pattern: Controlling Object Access]]
+  - [[#compound-patterns-patterns-of-patterns][Compound Patterns: Patterns of Patterns]]
+  - [[#better-living-with-patterns-patterns-in-the-real-world][Better Living with Patterns: Patterns in the Real World]]
+  - [[#leftover-patterns][Leftover Patterns]]
+  - [[#ref-book][Ref book]]
+
+* Program Design
+- [[https://noob.tw/open-source-licenses/][常見的五個開源專案授權條款，使用軟體更自由]]
+** namespace
+- [ ] [[https://zh.wikipedia.org/wiki/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4][命名空間 - wiki]]
+- [ ] [[https://tw-google-styleguide.readthedocs.io/en/latest/google-cpp-styleguide/scoping.html][2.1.1. 匿名命名空間 - Google 開源專案風格指南(繁體中文版)]]
+
+** HardCode
+
+* JAVA
+1. java structure of web
+2. maven vs Gradle 
+3. SpringBoot structure
+4. Familiar with object-oriented concepts(bring java book)
+5. Finish reading [[https://caterpillar.gitbooks.io/javase6tutorial/content/c4_1.html][Java SE 6 技術手冊]](8 or 11 up), [[https://morosedog.gitlab.io/springboot-20190313-springboot1/][SpringBoot]]
+   
+** API
+- [[https://docs.microsoft.com/zh-tw/azure/architecture/best-practices/api-design][Web API 設計]]
+- [[https://medium.com/chikuwa-tech-study/spring-boot-%E7%AC%AC2%E8%AA%B2-restful-api%E4%BB%8B%E7%B4%B9-955f776da32d][Spring Boot-第2課-設計RESTful API]]
+- [[https://blog.toright.com/posts/725/representational-state-transfer-%E8%BB%9F%E9%AB%94%E6%9E%B6%E6%A7%8B%E9%A2%A8%E6%A0%BC%E4%BB%8B%E7%B4%B9-part-i-%E5%BE%9E%E4%BA%86%E8%A7%A3-rest-%E5%88%B0%E8%A8%AD%E8%A8%88-restful%EF%BC%81.html][淺談 REST 軟體架構風格 (Part.I) - 從了解 REST 到設計 RESTful！]]
+
+*** else
+- [[https://openhome.cc/Gossip/SpringGossip/][開源框架: Spring Gossip]]
+- [[https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Status][HTTP Status]]
+
+*** QA
+Q1. 為什麼在Service定義過了method, 在Repository還要定義一次?
+
+** Spring
+*** run spring-boot project
+#+begin_src sh
+./mvnw spring-boot:run
+#+end_src
+
+*** Spring bean
+- [[https://medium.com/chikuwa-tech-study/spring-boot-%E7%AC%AC6%E8%AA%B2-%E5%85%83%E4%BB%B6%E7%9A%84%E9%81%8B%E7%94%A8%E8%88%87%E4%BE%9D%E8%B3%B4-8bb3bf1d4a28][Spring Boot-第6課-元件的運用與交互關係]]
+
+*** Spring Security
+- JWT [[https://medium.com/%E4%BC%81%E9%B5%9D%E4%B9%9F%E6%87%82%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88/jwt-json-web-token-%E5%8E%9F%E7%90%86%E4%BB%8B%E7%B4%B9-74abfafad7ba][JWT(JSON Web Token) — 原理介紹]]
+
+*** annotation
+1. @Restcontroller
+2. @PostConstruct [[https://iter01.com/512905.html][@PostConstruct註解]]
+3. [[https://blog.csdn.net/u013517229/article/details/89307158][@Entity, @Table]]
+4. [[https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/488347/][@Controller, @Service, @Repository, @Autowired, @Resource, @Component, @Qualifier]]
+5. @AutoWired
+   - 使用@Autowired標記的全域變數，其資料型態必須是有添加特定標記的類別，
+     如「@Service」與「@Repository」等。
+   - [[https://medium.com/chikuwa-tech-study/spring-boot-%E7%AC%AC6%E8%AA%B2-%E5%85%83%E4%BB%B6%E7%9A%84%E9%81%8B%E7%94%A8%E8%88%87%E4%BE%9D%E8%B3%B4-8bb3bf1d4a28][Spring Boot-第6課-元件的運用與交互關係]]
+6. @Column [[https://openhome.cc/Gossip/EJB3Gossip/FirstLocalJPA.html][@Column]]
+
+*** Hibernate
+- update(Hibernate 2): [[https://www.itread01.com/p/1398516.html][Hibernate更新某些欄位的幾種update方法]]
+- update(Hibernate 3): [[https://openhome.cc/Gossip/HibernateGossip/UpdateDelete.html][Hibernate 3 更新、刪除]]
+*** JBDC [0/1]
+- [ ] how to controller user role in postgresQL
+   
+*** dependency
+1. JUnit
+   
+** Swagger
+- API [[https://blog.csdn.net/chinassj/article/details/81875038][swagger注释API]]
+- JWT token in header
+  [[https://stackoverflow.com/a/61341986][Spring Boot & Swagger UI. Set JWT token]]
+  [[https://www.baeldung.com/spring-boot-swagger-jwt][Set JWT with Spring Boot and Swagger UI]]
+
+** adplatformbackend (project) 
+- https://adapi.isp99.com:8000/ad/
+- http://127.0.0.1:8000/api/swagger-ui.html
+- http://192.168.3.24:8000/api/swagger-ui.html
+
+*** run project
+**** project
+# in project directory
+./mvnw spring-boot:run
+#+end_src
+
+*** Question
+1. =variable in DTO= is reference to =Entity= ? (=AdPost=)
+2. how to ensure below:
+   #+begin_src java
+   @ApiModelProperty(hidden = true)
+   @JsonProperty(value = "XXX", required = true)
+   #+end_src
+3. So many =@ApiModelProperty(hidden = true)= in =Entity=, need to refactor to DTO?
+4. Both have =@JsonProperty(value = "short_url")= in =Entity= and =DTO= and it's the same variable, why?
+5. res? result? is equal to =basicDto.setResult?= or =.setMessage=?
+   need to add basic DTO?
+6. how to ensure the change is successful ? (program will run normal)
+   - use swagger?
+
+* Python
+- [[https://github.com/shdennlin/python-library][My Python Library]]
+- [[https://iottalk.vip/static/pystyle/index.html][Python 程式碼風格指引]]
+- [[https://pythonguidecn.readthedocs.io/zh/latest/writing/structure.html][结构化您的工程]]
+
+** decorator
+
+- [[https://www.maxlist.xyz/2019/12/25/python-property/][Property]]
+
+** Tools
+*** Poetry
++ Github: https://github.com/python-poetry/poetry
++ My basic configuration:
+  #+begin_src toml
+  [tool.poetry]
+  name = "<Project Name>"
+  version = "1.0.0"
+  description = "<Project Description>"
+  authors = ["shdennlin <shawndennislin@gmail.com>"]
+
+  [tool.poetry.dependencies]
+  python = ">=3.8"
+
+  [tool.poetry.dev-dependencies]
+  jedi = ">=0.13.0"
+  json-rpc = ">=1.8.1"
+  service-factory = ">=0.1.5"
+  flake8 = "^4.0.1"
+  autoflake = "^1.4"
+  importmagic = "^0.1.7"
+  epc = "^0.0.5"
+  yapf = "^0.31.0"
+  toml = "^0.10.2"
+  isort = "^5.10.1"
+
+  [build-system]
+  requires = ["poetry-core>=1.0.0"]
+  build-backend = "poetry.core.masonry.api"
+  #+end_src
+** Module
+*** Click
+- [[https://click.palletsprojects.com/en/8.0.x/][click.palletsprojects.com - 8.0.x]] 
+- [[https://myapollo.com.tw/zh-tw/python-click/][Python 用 Click 模組製作好用的指令]]
+** Framework
+*** flask
+*** django
+
+* Ruby on Rails
+- introduction: [[https://blog.chh.tw/posts/ruby-on-rails-server-options/][Ruby on Rails 伺服器的選擇]]
+** RVM
+
+#+begin_src text
+export GEM_HOME=$HOME/.gem
+#+end_src
+add this in file ~/.bashrc
+
+*** Command
+| man   | command                          | describe    | Ref |
+|-------+----------------------------------+-------------+-----|
+| =rvm= |                                  |             |     |
+|       | =rvm list known=                 |             |     |
+|       | =rvm get master=                 | update list |     |
+|       | =rvm install 2.3.8=              |             |     |
+|       | =rvm list=                       |             |     |
+|       | =rvm alias create default 2.3.8= |             |     |
+|       | =rvm use ruby-2.3.8=             |             |     |
+|       | =ruby -v=                        |             |     |
+|       | =rvm info=                       |             |     |
+|       | =source ~/.rvm/scripts/rvm=      |             |     |
+
+
++ Official Website: https://rvm.io/
++ Install tutorial: https://rvm.io/rvm/install
++ Ref: [[https://railsbook.tw/chapters/02-environment-setup.html][環境設定 為你自己學 Ruby on Rails]]
+  
+*** Action
+**** install bundler that matches with your =Gemfile.lock= use:
+   ~gem install bundler -v "$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)"~
+
+**** downgrade_rubygems
+#+begin_src sh
+$ gem -v
+2.0.3
+$ gem list rubygems-update
+$ gem uninstall -v 2.0.3 rubygems-update 
+
+$ gem install -v 1.8.24 rubygems-update
+$ update_rubygems
+$ gem -v
+1.8.24
+#+end_src
+https://gist.github.com/mmasashi/8245238
+
+**** downgrade bundler
+#+begin_src sh
+gem install bundler:1.16.1 --default
+
+=Remove/delete the bundler.gemspec=
+
+#+end_src
+
+*** Tools
+- [[https://github.com/chrismo/bundle-bungler][bundle-bungler]]
+   Bounce bundled gems between a local project folder and a shared location.
+
+** Template
+*** ERB
+*** Slim
+introduction: https://symphonyh.github.io/cloudblog/2017/03/06/slim/
+** Plugins
+*** Capistrano
+**** 使用capistrano从不同的git分支进行部署
+[[https://www.codenong.com/1524204/][使用capistrano从不同的git分支进行部署]]
+** Shell Script
++ Tutorial: http://linux.vbird.org/linux_basic/0340bashshell-scripts.php
+
+*** command
+- test (*-e*, *-f*, etc.)
+   http://linux.vbird.org/linux_basic/0340bashshell-scripts.php#test
+
+* Design Pattern
+
+** The Strategy Pattern
+** The Observer Pattern: Keeping your Objects in the know
+** The Decorator Pattern: Decorating Objects
+** The Factory Pattern: Baking with OO Goodness
+** The Singleton Pattern: One of a Kind Objects
+** The Command Pattern: Encapsulating Invocation
+** The Adapter and Facade Patterns: Being Adaptive
+** The Template Method Pattern: Encapsulating Algorithms
+** The Iterator and Composite Patterns: Well-Managed Collections
+** The State Pattern: The State of Things
+** The Proxy Pattern: Controlling Object Access
+** Compound Patterns: Patterns of Patterns
+** Better Living with Patterns: Patterns in the Real World
+** Leftover Patterns
+** Ref book
+- /Head First Design Patterns/ -> [[https://www.wickedlysmart.com/head-first-design-patterns/][Welcome to Head First Design Patterns]], [[https://www.oreilly.com/library/view/head-first-design/0596007124/][Table of contents]]

@@ -1,0 +1,27 @@
+#+STARTUP: overview
+#+OPTIONS: \n:t
+#+EXPORT_FILE_NAME:	website-system
+#+TITLE:	Website System
+#+AUTHOR:	Shawn Dennis Lin
+#+EMAIL:	ShawnDennisLin@gmail.com
+#+DATE:	[2022-07-08 Fri]
+#+HUGO_AUTO_SET_LASTMOD: t
+
+* Content                                                 :TOC_2_gh:noexport:
+- [[#cdn][CDN]]
+- [[#database][Database]]
+  - [[#blob-storage][Blob Storage]]
+
+* CDN
+
++ [[https://www.cloudflare.com/learning/cdn/what-is-a-cdn/][What is a CDN? | How do CDNs work?]]
+
+* Database
+
++ [[https://towardsdatascience.com/choosing-the-right-database-in-a-system-design-interview-b8af9c6dc525][Choosing the right database]]
+   How to choose the right storage solution for your requirements
++ [[https://faq.postgresql.tw/postgresql-vs-mysql][PostgreSQL vs MySQL]]
++ [[https://read01.com/zh-tw/L2DnDLj.html#.YsvG2EhByFY][「技術選型」比較MongoDB和PostgreSQL:誰才是王者？]]
+
+** Blob Storage
+

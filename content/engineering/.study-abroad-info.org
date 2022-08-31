@@ -1,0 +1,41 @@
+#+STARTUP: content
+#+OPTIONS: \n:t
+#+EXPORT_FILE_NAME:	study-abroad-info
+
+#+TITLE:	Study Abroad Information
+#+AUTHOR:	Shawn Dennis Lin
+#+EMAIL:	ShawnDennisLin@gmail.com
+#+DATE:	[2021-09-08 Wed]
+
+* Study Abroad Information
+** School
+1. penn state
+2. georgia state university
+3. georgia tech university
+4. uc davis
+5. 密西根大學
+6. Purdue University
+
+
+
+** University Rank
++ https://www.usnews.com/best-graduate-schools/top-science-schools/computer-science-rankings
+   
+   
+** Exam
+
+*** Test online
++ [[https://toeic24.com/toeic-online-test][TOEIC ONLINE TEST]]
+
+
+** cram schools
+
+*** GRE
++ mason school
+
+** Video Reference
++ [[https://youtu.be/BtzoHQMWh7][加拿大 美國研究所申請經驗分享 秘訣資源大公開]]
+
+
+
+

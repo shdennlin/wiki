@@ -1,0 +1,124 @@
+baseURL: "/"
+enableRobotsTXT: true
+title: "Shdennlin's Wiki"
+theme: "docsy"
+enableGitInfo: true
+
+pygmentsCodeFences: true
+pygmentsUseClasses: false
+pygmentsUseClassic: false
+pygmentsStyle: tango
+
+outputs:
+  home: [HTML]
+  page: [HTML]
+  section: [HTML, RSS]
+
+imaging:
+  resampleFilter: CatmullRom
+  quality: 75
+  anchor: smart
+
+# services:
+#   googleAnalytics:
+#     id: UA-00000000-0
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    style: tango
+
+params:
+  copyright: The Shdennlin's Wiki Authors
+  privacy_policy: https://policies.google.com/privacy
+  version_menu: Releases
+  # archived_version: false
+  # version: 0.4.0
+  # url_latest_version: https://example.com
+  github_repo: https://github.com/shdennlin/wiki
+  # github_project_repo: https://github.com/shdennlin/wiki
+  time_format_blog: Monday, January 02, 2006
+  time_format_default: January 2, 2006
+  algolia_docsearch: true
+  offlineSearch: false
+  offlineSearchSummaryLength: 70
+  offlineSearchMaxResults: 10
+  # Enable syntax highlighting and copy buttons on code blocks with Prism
+  prism_syntax_highlighting: true
+  # gcs_engine_id: 
+  ui:
+    sidebar_menu_compact: true
+    sidebar_menu_foldable: true
+    sidebar_cache_limit: 20
+    breadcrumb_disable: false
+    sidebar_search_disable: false
+    navbar_logo: true
+    feedback:
+      enable: false
+      'yes': >-
+        Glad to hear it! Please <a
+        href="https://github.com/shdennlin/wiki/issues/new">tell us how we can
+        improve</a>.
+      'no': >-
+        Sorry to hear that. Please <a
+        href="https://github.com/shdennlin/wiki/issues/new">tell us how we can
+        improve</a>.
+    readingtime:
+      enable: false
+  links:
+    user:
+      - name: GitHub Issue
+        url: https://github.com/shdennlin/wiki/issues
+        icon: fa-brands fa-github
+        desc: Discussion and help from your fellow users
+      - name: Author Mail
+        url: mailto:ShawnDennisLin@gmail.com
+        icon: fa-solid fa-envelope
+      - name: Blog
+        url: https://blog.shdennlin.com
+        icon: fa-brands fa-blogger
+      - name: Linkedin
+        url: https://www.linkedin.com/in/shawn-lin-1582b9201/
+        icon: fa-brands fa-linkedin
+    developer:
+      - name: GitHub
+        url: https://github.com/shdennlin/wiki
+        icon: fa-brands fa-github
+        desc: Development takes place here!
+
+  mermaid:
+    enable: true
+    theme: default
+  plantuml:
+    enable: true
+    theme: default
+    svg_image_url: https://www.plantuml.com/plantuml/svg/
+    svg: false
+  katex:
+    enable: true
+    html_dom_element: document.body
+    mhchem:
+      enable: true
+  print:
+    disable_toc: false
+  markmap:
+    enable: true
+
+taxonomies:
+  tag: tags
+  category: categories
+
+module:
+  mounts:
+    - source: content/en
+      target: content
+
+menu:
+  main:
+    - name: Blog
+      weight: 100
+      url: https://blog.shdennlin.com
+      post: <sup><i class="pl-1 fa-solid fa-up-right-from-square fa-xs"
+        aria-hidden="true"></i></sup>
