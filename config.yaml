@@ -41,13 +41,13 @@ params:
   # github_project_repo: https://github.com/shdennlin/wiki
   time_format_blog: Monday, January 02, 2006
   time_format_default: January 2, 2006
-  algolia_docsearch: true
+  gcs_engine_id: 26e25034567fd4989
+  algolia_docsearch: false
   offlineSearch: false
   offlineSearchSummaryLength: 70
   offlineSearchMaxResults: 10
   # Enable syntax highlighting and copy buttons on code blocks with Prism
   prism_syntax_highlighting: true
-  # gcs_engine_id: 
   ui:
     sidebar_menu_compact: true
     sidebar_menu_foldable: true
@@ -118,7 +118,7 @@ module:
 menu:
   main:
     - name: Blog
-      weight: 100
+      weight: 200
       url: https://blog.shdennlin.com
       post: <sup><i class="pl-1 fa-solid fa-up-right-from-square fa-xs"
         aria-hidden="true"></i></sup>

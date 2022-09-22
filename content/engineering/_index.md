@@ -7,7 +7,7 @@ description: >
 
 menu:
   main:
-    weight: 30
+    weight: 50
 
 cascade:
   type: "docs"
