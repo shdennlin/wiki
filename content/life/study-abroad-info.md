@@ -1,7 +1,6 @@
 ---
 title: Study Abroad Information
 description:
-date: 2021-09-08T00:00:00+08:00
 draft: false
 weight: 105
 spelling: 
