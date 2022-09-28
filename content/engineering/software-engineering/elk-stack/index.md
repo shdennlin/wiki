@@ -18,7 +18,8 @@ spelling:
       + X ~~`dynamic: false`~~
       + V `dynamic: strick`
     + ***Turn off*** `date` or `number` automatic judgment
-3. Index Template
+3. Index Template Recommendation
+   <!-- + -->
 4. Index Alias
 
 ### keyword type vs. text datatype
