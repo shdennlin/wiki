@@ -2,7 +2,6 @@
 Title: ELK Stack
 Description: >
  Elacticsearch, Kibana, Logstash
-spelling: 
 ---
 
 ## Elasticsearch
@@ -41,7 +40,11 @@ Kibana is a free and open user interface that lets you visualize your Elasticsea
 
 + Input / Transform /stash
 
-## Application Architecture
+## Application Architecture Reference
 
 ![1bdee42](./1bdee42.png)
 ![bc31ac7](./bc31ac7.png)
+\\( \uparrow \\) [image ref: Building a real-time elastic search engine using Python, Easticsearch, React, Redux, and K8](https://faun.pub/building-a-real-time-elastic-search-engine-using-python-32e05bcb9140)
+
+![0eccb35](./0eccb35.png)
+\\( \uparrow \\)  [image ref: Using Amazon ElasticSearch to Improve Performance when Querying Data in MySQL](https://blog.clearscale.com/amazon-elasticsearch-mysql-performance/)
