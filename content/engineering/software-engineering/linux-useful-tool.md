@@ -60,7 +60,7 @@ Description: >
 
   ```shell
   sudo apt-get install -y qdirstat
-  ````
+  ```
 
 ## Terminal Tools
 
@@ -148,9 +148,23 @@ Description: >
   pip3 install xxh-xxh
   ```
 
-+ [zsh](https://www.zsh.org/)
++ [zsh](https://www.zsh.org/) \
   Zsh is a shell designed for interactive use, although it is also a powerful scripting language
 
   ```shell
   sudo apt-get install -y zsh
+  ```
+
++ [fd](https://github.com/sharkdp/fd) \
+  A simple, fast and user-friendly alternative to 'find'
+
+  ```shell
+  sudo apt-get install -y fd-find
+  ```
+
++ [ripgrep](https://github.com/BurntSushi/ripgrep) \
+  ripgrep recursively searches directories for a regex pattern while respecting your gitignore
+
+  ```shell
+  sudo apt-get install -y ripgrep
   ```

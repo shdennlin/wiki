@@ -1,7 +1,6 @@
 ---
 Title: Blue Team
 description:
-draft: false
 spelling: 
 ---
 
