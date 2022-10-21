@@ -21,3 +21,5 @@ spelling:
 + VA - Vulnerability Assessment
 
 + PT - Penetration test
+
++ NTLM - New Technology LAN Manager
