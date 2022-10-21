@@ -17,7 +17,7 @@ Description:
 
 [***05 - Password Attacks***](#05---password-attacks): [💲John](#john)
 
-+ Online Attacks: 💲hydra
++ Online Attacks: [💲hydra](#hydra)
 
 [***09 - Sniffing & Spoofing***](#09---sniffing--spoofing): 💲responder, 💲tcpdump, 📦wireshark
 
@@ -37,7 +37,7 @@ Description:
 [***Web***](#web): Nikto, DRIB, Dirbuster, WPScan
  -->
 
-[***Storage Service***](#storage-service): [💲AWS-S3](#aws-s3), 💲mysql, 💲redis-cli
+[***Storage Service***](#storage-service): [💲AWS-S3](#aws-s3), 💲mysql, 💲redis-cli, [💲smbclient](#smbclient)
 
 [***File & Data***](#filedata): ASCII, 💲base64, 💲[exiftool](#exiftool)
 
@@ -107,6 +107,16 @@ Password cracker.
 
 `john -w=rockyou.txt hash.txt`
 
+### 💲hydra
+
+### 💲wfuzz
+
+``` shell
+wfuzz --sc 200 -w num.txt -H "Cookie: user=FUZZ; role=guest"  http://10.129.81.172/uploads/
+```
+
+> --sc 200: only show the response with status code 200
+
 ## 09 - Sniffing & Spoofing
 
 ## 10 - Post Exploitation
@@ -134,6 +144,13 @@ Password cracker.
 
 + `aws configure`
 + `aws s3 ls`
+
+### 💲smbclient
+
++ `smbclient -L \\\\${ip}`
+
+> -L: lsit
+> -U: user
 
 ## File&Data
 
