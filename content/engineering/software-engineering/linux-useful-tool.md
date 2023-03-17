@@ -62,6 +62,9 @@ Description: >
   sudo apt-get install -y qdirstat
   ```
 
++ [Free File Sync](https://freefilesync.org/) \
+  Open Source File Synchronization & Backup Software
+
 ## Terminal Tools
 
 + [aria2](https://aria2.github.io/) \

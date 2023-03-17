@@ -12,7 +12,7 @@ spelling:
   + [What is Breach and Attack Simulation (BAS)? - A comprehensive guide](https://cloudcape.de/what-is-breach-and-attack-simulation/)
   + [6 Best Breach and Attack Simulation (BAS) Tools for 2022](https://www.comparitech.com/net-admin/best-bas-tools/)
 
-+ RCE - Remote Code Execution \
++ RCE - Remote Code Execution
   + How Does It Work: Injection Attacks, Deserialization Attacks, Out-of-Bounds Write
   + Example: [Log4j](https://blog.checkpoint.com/2021/12/11/protecting-against-cve-2021-44228-apache-log4j2-versions-2-14-1/), [WannaCry](https://zh.wikipedia.org/zh-tw/WannaCry)
 
@@ -23,3 +23,9 @@ spelling:
 + PT - Penetration test
 
 + NTLM - New Technology LAN Manager
+
++ UAF - Use-After-Free
+
+  Use-After-Free (UAF) is a vulnerability related to incorrect use of dynamic memory during program operation. If after freeing a memory location, a program does not clear the pointer to that memory, an attacker can use the error to hack the program.
+
++ AMSI - Antimalware Scan Interface

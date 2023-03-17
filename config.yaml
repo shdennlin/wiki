@@ -29,6 +29,9 @@ markup:
       unsafe: true
   highlight:
     style: tango
+  tableOfContents:
+    startLevel: 2
+    endLevel: 4
 
 params:
   copyright: The Shdennlin's Wiki Authors
