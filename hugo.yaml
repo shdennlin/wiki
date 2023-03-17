@@ -1,7 +1,7 @@
-baseURL: "/"
-enableRobotsTXT: true
+baseURL: /
 title: "Shdennlin's Wiki"
-theme: "docsy"
+enableRobotsTXT: true
+theme: [docsy]
 enableGitInfo: true
 
 pygmentsCodeFences: true
@@ -12,7 +12,7 @@ pygmentsStyle: tango
 outputs:
   home: [HTML]
   page: [HTML]
-  section: [HTML, RSS]
+  section: [HTML, RSS, print]
 
 imaging:
   resampleFilter: CatmullRom
@@ -121,7 +121,7 @@ module:
 menu:
   main:
     - name: Blog
-      weight: 200
+      weight: 100
       url: https://blog.shdennlin.com
       post: <sup><i class="pl-1 fa-solid fa-up-right-from-square fa-xs"
         aria-hidden="true"></i></sup>
