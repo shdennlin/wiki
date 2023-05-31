@@ -6,168 +6,259 @@ Description: >
 
 ## System tools
 
-+ [Boot-Repair](https://help.ubuntu.com/community/Boot-Repair) \
-  A simple tool to repair frequent boot issues you may encounter in Ubuntu
+### • Boot-Repair
 
-  ```shell
-  sudo add-apt-repository ppa:yannubuntu/boot-repair && sudo apt update
-  sudo apt install -y boot-repair && boot-repair
-  ```
+<https://help.ubuntu.com/community/Boot-Repair>
 
-+ [TLP](https://linrunner.de/tlp/index.html) \
-  Optimize Linux Laptop Battery Life
+A simple tool to repair frequent boot issues you may encounter in Ubuntu
 
-  ```shell
-  sudo apt install tlp tlp-rdw
-  sudo apt-get install smartmontools
-  sudo systemctl start tlp
+```bash
+sudo add-apt-repository ppa:yannubuntu/boot-repair && sudo apt update
+sudo apt install -y boot-repair && boot-repair
+```
 
-  sudo tlp-stat | less
-  ```
+### • TLP
+
+<https://linrunner.de/tlp/index.html>
+
+Optimize Linux Laptop Battery Life
+
+```bash
+sudo apt install tlp tlp-rdw
+sudo apt-get install smartmontools
+sudo systemctl start tlp
+
+sudo tlp-stat | less
+```
 
 ## GUI tools
 
-+ [Fcitx 5](https://fcitx-im.org/wiki/Install_Fcitx_5) \
-  Input method framework with extension support
+### • Angry IP scanner
 
-  ```shell
-  sudo apt-get install -y fcitx fcitx-table-boshiamy fcitx-chewing
-  ```
+<https://angryip.org/>
 
-+ [Angry IP scanner](https://angryip.org/) \
-  Fast and friendly network scanner
+Fast and friendly network scanner
 
-+ [Crow Translate](https://crow-translate.github.io/) \
-  A simple and lightweight translator
+### • Crow Translate
 
-+ [Drawio Desktop](https://github.com/jgraph/drawio-desktop) \
-  A diagramming and whiteboarding desktop app based on Electron that wraps the core draw.io editor.
+<https://crow-translate.github.io/>
 
-+ [linux-wifi-hotspot](https://github.com/lakinduakash/linux-wifi-hotspot) \
-  Feature-rich wifi hotspot creator for Linux, which provides both GUI and command-line interface.
-  
-+ [Open Broadcaster Software Studio (OBS)](https://obsproject.com/) \
-  Free and open source software for video recording and live streaming
+A simple and lightweight translator
 
-+ [Rclone](https://rclone.org/) \
-  A command-line program to manage files on cloud storage. It is a feature-rich alternative to cloud vendors' web storage interfaces. Over 40 cloud storage products support rclone including S3 object stores, business & consumer file storage services, as well as standard transfer protocols.
+### • Drawio Desktop
 
-+ [Remmina](https://remmina.org/)
-  Remote access screen and file sharing to your desktop
+<https://github.com/jgraph/drawio-desktop>
 
-+ [QDirStat](https://github.com/shundhammer/qdirstat) \
-  Qt-based directory statistics (KDirStat without any KDE - from the original KDirStat author)
+A diagramming and whiteboarding desktop app based on Electron that wraps the core draw.io editor.
 
-  ```shell
-  sudo apt-get install -y qdirstat
-  ```
+### • Fcitx 5
 
-+ [Free File Sync](https://freefilesync.org/) \
-  Open Source File Synchronization & Backup Software
+<https://fcitx-im.org/wiki/Install_Fcitx_5>
+
+Input method framework with extension support
+
+```bash
+sudo apt-get install -y fcitx fcitx-table-boshiamy fcitx-chewing
+```
+
+### • Free File Sync
+
+<https://freefilesync.org/>
+
+Open Source File Synchronization & Backup Software
+
+### • Open Broadcaster Software Studio (OBS)
+
+<https://obsproject.com/>
+
+Free and open source software for video recording and live streaming
+
+### • QDirStat
+
+<https://github.com/shundhammer/qdirstat>
+
+Qt-based directory statistics (KDirStat without any KDE - from the original KDirStat author)
+
+```bash
+sudo apt-get install -y qdirstat
+```
+
+### • Rclone
+
+<https://rclone.org/>
+
+A command-line program to manage files on cloud storage. It is a feature-rich alternative to cloud vendors' web storage interfaces. Over 40 cloud storage products support rclone including S3 object stores, business & consumer file storage services, as well as standard transfer protocols.
+
+### • Remmina
+
+<https://remmina.org/>
+
+Remote access screen and file sharing to your desktop
+
+### • linux-wifi-hotspot
+
+<https://github.com/lakinduakash/linux-wifi-hotspot>
+
+Feature-rich wifi hotspot creator for Linux, which provides both GUI and command-line interface.
 
 ## Terminal Tools
 
-+ [aria2](https://aria2.github.io/) \
-  aria2 is a lightweight multi-protocol & multi-source command-line download utility. It supports HTTP/HTTPS, FTP, SFTP, BitTorrent and Metalink. aria2 can be manipulated via built-in JSON-RPC and XML-RPC interfaces.
+### • aria2
 
-  ```shell
-  sudo apt-get install -y aria2
-  ```
+<https://aria2.github.io/>
 
-+ [zoxide](https://github.com/ajeetdsouza/zoxide) \
-  zoxide is a smarter cd command, inspired by z and autojump.
+aria2 is a lightweight multi-protocol & multi-source command-line download utility. It supports HTTP/HTTPS, FTP, SFTP, BitTorrent and Metalink. aria2 can be manipulated via built-in JSON-RPC and XML-RPC interfaces.
 
-+ [exa](https://the.exa.website/) \
-  A modern replacement for ls. \
-  `exa` is a modern replacement for `ls`. It supports colours, Git integration, and other niceties.
+```bash
+sudo apt-get install -y aria2
+```
 
-  ``` shell
-  sudo apt-get install -y exa
-  ```
+### • bat
 
-+ [bat](https://github.com/sharkdp/bat) \
-  A cat(1) clone with wings.
+<https://github.com/sharkdp/bat>
 
-  ```shell
-  sudo apt install -y bat
-  ```
+A cat(1) clone with wings.
 
-+ [The Silver Searcher](https://github.com/ggreer/the_silver_searcher) \
-  A code-searching tool similar to ack, but faster.
+```bash
+sudo apt install -y bat
+```
 
-  ```shell
-  sudo apt-get install silversearcher-ag
-  ```
+### • dua
 
-+ [fzf](https://github.com/junegunn/fzf) \
-  A command-line fuzzy finder
+<https://github.com/Byron/dua-cli>
 
-  ```shell
-  sudo apt-get install fzf
-  ```
+View disk space usage and delete unwanted data, fast.
 
-+ [fzf-tab](https://github.com/Aloxaf/fzf-tab) \
-  Replace zsh's default completion selection menu with fzf!
+```bash
+curl -LSfs https://raw.githubusercontent.com/Byron/dua-cli/master/ci/install.sh |
+sh -s -- --git Byron/dua-cli --target x86_64-unknown-linux-musl --crate dua --tag v2.17.4
+```
 
-+ [locate](https://linuxhint.com/linux-locate-command/) \
-  the quickest and simplest way to search for files and directories by their names.
+### • exa
 
-  ```shell
-  sudo apt install mlocate
-  ```
+<https://the.exa.website/>
 
-+ [mosh](https://mosh.org) \
-  Mosh is a remote terminal application that supports intermittent connectivity, allows roaming, and provides speculative local echo and line editing of user keystrokes.
-  
-  ```shell
-  sudo apt-get install mosh
-  ```
+A modern replacement for ls.
+`exa` is a modern replacement for `ls`. It supports colours, Git integration, and other niceties.
 
-+ process monitor - [BPYTOP](https://github.com/aristocratos/bpytop) \
+```shell
+sudo apt-get install -y exa
+```
+
+### • fd
+
+<https://github.com/sharkdp/fd>
+
+A simple, fast and user-friendly alternative to 'find'
+
+```bash
+sudo apt-get install -y fd-find
+```
+
+### • fzf
+
+<https://github.com/junegunn/fzf>
+
+A command-line fuzzy finder
+
+```bash
+sudo apt-get install fzf
+```
+
+### • fzf-tab
+
+<https://github.com/Aloxaf/fzf-tab>
+
+Replace zsh's default completion selection menu with fzf!
+
+### • locate
+
+<https://linuxhint.com/linux-locate-command/>
+
+the quickest and simplest way to search for files and directories by their names.
+
+```bash
+sudo apt install mlocate
+```
+
+### • mosh
+
+<https://mosh.org>
+
+Mosh is a remote terminal application that supports intermittent connectivity, allows roaming, and provides speculative local echo and line editing of user keystrokes.
+
+```bash
+sudo apt-get install mosh
+```
+
+### • process monitor
+
+- [BPYTOP](https://github.com/aristocratos/bpytop)
   Linux/OSX/FreeBSD resource monitor
 
-  ```shell
+  ```bash
   sudo apt install bpytop
   ```
 
-+ process monitor - [nvitop](https://github.com/XuehaiPan/nvitop) \
+- [nvitop](https://github.com/XuehaiPan/nvitop)
   An interactive NVIDIA-GPU process viewer, the one-stop solution for GPU process management.
 
-  ```shell
+  ```bash
   pip3 install --upgrade nvitop
   ```
 
-+ [xclip](https://github.com/astrand/xclip) \
-  Command line interface to the X11 clipboard
+### • ripgrep
 
-  ```shell
-  sudo apt-get install -y xclip
-  ```
+<https://github.com/BurntSushi/ripgrep>
 
-+ [xxh](https://github.com/xxh/xxh) \
-  Bring your favorite shell wherever you go through the ssh.
+ripgrep recursively searches directories for a regex pattern while respecting your gitignore
 
-  ```shell
-  pip3 install xxh-xxh
-  ```
+```bash
+sudo apt-get install -y ripgrep
+```
 
-+ [zsh](https://www.zsh.org/) \
-  Zsh is a shell designed for interactive use, although it is also a powerful scripting language
+### • the Silver Searcher
 
-  ```shell
-  sudo apt-get install -y zsh
-  ```
+<https://github.com/ggreer/the_silver_searcher>
 
-+ [fd](https://github.com/sharkdp/fd) \
-  A simple, fast and user-friendly alternative to 'find'
+A code-searching tool similar to ack, but faster.
 
-  ```shell
-  sudo apt-get install -y fd-find
-  ```
+```bash
+sudo apt-get install silversearcher-ag
+```
 
-+ [ripgrep](https://github.com/BurntSushi/ripgrep) \
-  ripgrep recursively searches directories for a regex pattern while respecting your gitignore
+### • xclip
 
-  ```shell
-  sudo apt-get install -y ripgrep
-  ```
+<https://github.com/astrand/xclip>
+
+Command line interface to the X11 clipboard
+
+```bash
+sudo apt-get install -y xclip
+```
+
+### • xxh
+
+<https://github.com/xxh/xxh>
+
+Bring your favorite shell wherever you go through the ssh.
+
+```bash
+pip3 install xxh-xxh
+```
+
+### • zoxide
+
+<https://github.com/ajeetdsouza/zoxide>
+
+zoxide is a smarter cd command, inspired by z and autojump.
+
+### • zsh
+
+<https://www.zsh.org/>
+
+Zsh is a shell designed for interactive use, although it is also a powerful scripting language
+
+```bash
+sudo apt-get install -y zsh
+```
